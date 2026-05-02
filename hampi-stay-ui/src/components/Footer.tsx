@@ -18,24 +18,24 @@ export function Footer() {
             <p className="text-sm leading-relaxed mb-6">
               Experience the pinnacle of luxury eco-tourism in the heart of the ancient Vijayanagara empire.
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-3">
               <a
                 href="#"
-                className="px-4 py-2 rounded-full bg-forest-900 hover:bg-terracotta-600 hover:text-white transition-colors"
+                className="px-4 py-2 rounded-full bg-forest-900 hover:bg-terracotta-600 hover:text-white transition-colors text-sm font-medium"
               >
                 Instagram
               </a>
 
               <a
                 href="#"
-                className="px-4 py-2 rounded-full bg-forest-900 hover:bg-terracotta-600 hover:text-white transition-colors"
+                className="px-4 py-2 rounded-full bg-forest-900 hover:bg-terracotta-600 hover:text-white transition-colors text-sm font-medium"
               >
                 Twitter
               </a>
 
               <a
                 href="#"
-                className="px-4 py-2 rounded-full bg-forest-900 hover:bg-terracotta-600 hover:text-white transition-colors"
+                className="px-4 py-2 rounded-full bg-forest-900 hover:bg-terracotta-600 hover:text-white transition-colors text-sm font-medium"
               >
                 Facebook
               </a>

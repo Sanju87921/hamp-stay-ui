@@ -1,0 +1,166 @@
+// ============================================================
+// ResortCard — Luxury resort card for listing page
+// ============================================================
+
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Star, MapPin, Heart, Check } from "lucide-react";
+import { cn } from "../../utils/cn";
+import type { Resort } from "../../types/resort";
+
+interface ResortCardProps {
+  resort: Resort;
+  index?: number;
+  isInCompare?: boolean;
+  onCompareToggle?: (resort: Resort) => void;
+  compareDisabled?: boolean;
+}
+
+const TYPE_LABELS: Record<Resort["type"], string> = {
+  luxury: "Luxury",
+  boutique: "Boutique",
+  eco: "Eco-Stay",
+  heritage: "Heritage",
+  budget: "Budget",
+};
+
+const TYPE_COLORS: Record<Resort["type"], string> = {
+  luxury: "bg-amber-50 text-amber-700 border-amber-200",
+  boutique: "bg-purple-50 text-purple-700 border-purple-200",
+  eco: "bg-green-50 text-green-700 border-green-200",
+  heritage: "bg-orange-50 text-orange-700 border-orange-200",
+  budget: "bg-blue-50 text-blue-700 border-blue-200",
+};
+
+export function ResortCard({
+  resort,
+  index = 0,
+  isInCompare = false,
+  onCompareToggle,
+  compareDisabled = false,
+}: ResortCardProps) {
+  const [isFav, setIsFav] = useState(false);
+  const [imgError, setImgError] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-luxury transition-all duration-500 border border-stone-100 flex flex-col"
+    >
+      {/* Image */}
+      <Link to={`/resorts/${resort.slug}`} className="relative aspect-[4/3] overflow-hidden block">
+        <img
+          src={imgError ? "https://images.unsplash.com/photo-1542314831-c6a4d14d8c53?q=80&w=800" : resort.images[0]}
+          alt={resort.name}
+          loading="lazy"
+          onError={() => setImgError(true)}
+          className="w-full h-full object-cover transition-transform duration-1000 ease-[0.16,1,0.3,1] group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60 opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+
+        {/* Badges */}
+        <div className="absolute top-4 left-4 flex flex-col gap-2">
+          {resort.isFeatured && (
+            <span className="bg-terracotta-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">
+              Featured
+            </span>
+          )}
+          <span className={cn("px-3 py-1 rounded-full text-xs font-bold border uppercase tracking-wider", TYPE_COLORS[resort.type])}>
+            {TYPE_LABELS[resort.type]}
+          </span>
+        </div>
+
+        {/* Favourite */}
+        <button
+          type="button"
+          aria-label="Add to favourites"
+          onClick={(e) => { e.preventDefault(); setIsFav((p) => !p); }}
+          className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center hover:bg-white/40 transition-colors shadow-sm"
+        >
+          <Heart className={cn("w-5 h-5 transition-all duration-300", isFav ? "fill-terracotta-500 text-terracotta-500 scale-110" : "text-white")} />
+        </button>
+
+        {/* Rating badge on hover */}
+        <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow-lg translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+          <Star className="w-4 h-4 text-terracotta-500 fill-terracotta-500" />
+          <span className="text-sm font-bold text-stone-900">{resort.rating}</span>
+          <span className="text-xs text-stone-500 font-medium">({resort.reviewCount})</span>
+        </div>
+      </Link>
+
+      {/* Content */}
+      <div className="p-6 flex-grow flex flex-col justify-between">
+        <div>
+          <div className="flex items-center gap-1.5 text-stone-500 mb-2">
+            <MapPin className="w-4 h-4 text-terracotta-500 flex-shrink-0" />
+            <span className="text-sm font-medium tracking-wide">{resort.location.area}, Hampi</span>
+          </div>
+
+          <Link to={`/resorts/${resort.slug}`}>
+            <h3 className="text-xl font-bold font-serif text-forest-950 group-hover:text-terracotta-600 transition-colors duration-300 mb-4 leading-snug">
+              {resort.name}
+            </h3>
+          </Link>
+
+          <div className="flex flex-wrap gap-2 mb-5">
+            {resort.amenities.slice(0, 3).map((a) => (
+              <span key={a} className="px-3 py-1 bg-stone-50 text-stone-600 text-xs font-semibold rounded-lg border border-stone-100">
+                {a}
+              </span>
+            ))}
+            {resort.amenities.length > 3 && (
+              <span className="px-3 py-1 bg-stone-50 text-stone-500 text-xs font-semibold rounded-lg border border-stone-100">
+                +{resort.amenities.length - 3} more
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div className="flex items-end justify-between pt-5 border-t border-stone-100">
+          <div>
+            <span className="block text-[11px] text-stone-400 uppercase tracking-widest font-bold mb-0.5">From</span>
+            <div className="flex items-baseline gap-1">
+              <span className="text-2xl font-serif font-bold text-forest-950">
+                ₹{resort.pricePerNight.toLocaleString("en-IN")}
+              </span>
+              <span className="text-sm font-medium text-stone-500">/night</span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {/* Compare toggle */}
+            {onCompareToggle && (
+              <button
+                type="button"
+                onClick={() => onCompareToggle(resort)}
+                disabled={compareDisabled && !isInCompare}
+                title={isInCompare ? "Remove from compare" : "Add to compare"}
+                className={cn(
+                  "text-xs font-bold px-3 py-2 rounded-xl border transition-all duration-200",
+                  isInCompare
+                    ? "bg-forest-700 text-white border-forest-700"
+                    : "border-stone-300 text-stone-600 hover:border-forest-500 hover:text-forest-700 disabled:opacity-40 disabled:cursor-not-allowed"
+                )}
+              >
+                {isInCompare ? (
+                  <span className="flex items-center gap-1"><Check className="w-3 h-3" /> Added</span>
+                ) : "Compare"}
+              </button>
+            )}
+
+            <Link
+              to={`/resorts/${resort.slug}`}
+              className="text-sm font-bold text-forest-700 hover:text-white px-5 py-2 rounded-xl border border-forest-100 hover:bg-forest-900 hover:border-forest-900 transition-all duration-300"
+            >
+              Explore
+            </Link>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}

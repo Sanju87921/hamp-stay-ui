@@ -20,16 +20,17 @@
 ## 🟠 PHASE 2 — Traveller: Search & Discovery
 > Goal: Travellers can browse and find resorts
 
-- [ ] Functional search bar (location, dates, guests)
-- [ ] Date picker (check-in / check-out calendar)
-- [ ] Guest counter (adults + children)
-- [ ] Resort listing page with filters (price range, amenities, rating, type)
-- [ ] Sort by: Price, Rating, Popularity, Newest
-- [ ] Map view of resorts (Leaflet.js / Google Maps)
-- [ ] Resort detail page (photo gallery, description, amenities, policies)
-- [ ] Real-time availability check
-- [ ] Compare resorts side-by-side (2–3 properties)
-- [ ] Nearby attractions guide (Hampi heritage sites, temples, etc.)
+- ✅ Functional search bar (location, dates, guests)
+- ✅ Date picker (check-in / check-out calendar)
+- ✅ Guest counter (adults + children)
+- ✅ Resort listing page with filters (price range, amenities, rating, type)
+- ✅ Sort by: Price, Rating, Popularity, Newest
+- ✅ Map view of resorts (Leaflet.js)
+- ✅ Resort detail page (photo gallery, description, amenities, policies)
+- ✅ Real-time availability check
+- ✅ Compare resorts side-by-side (2–3 properties)
+- ✅ Nearby attractions guide (Hampi heritage sites, temples, etc.)
+
 
 ---
 
@@ -331,4 +332,7 @@
 
 ---
 
-> ⏳ **Phase 1 Progress: 75% Complete.** Authentication and Role-based systems are live. Ready to start Phase 2.
+> ⏳ **Phase 1 Progress: 75% Complete.** Authentication and Role-based systems are live.
+> ✅ **Phase 2 Complete.** Search & Discovery fully implemented — SearchBar, Date Picker, Guest Counter, Resort Listing, Filters, Sort, Map View (Leaflet), Resort Detail, Availability Check, Compare Tool, Nearby Attractions Guide.
+> 🔜 **Phase 3 Next.** Booking Flow & Payments.
+

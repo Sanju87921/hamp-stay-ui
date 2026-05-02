@@ -4,8 +4,11 @@ import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
+import { Resorts } from "./pages/Resorts";
+import { ResortDetail } from "./pages/ResortDetail";
+import { ResortCompare } from "./pages/ResortCompare";
 
-// Placeholder Pages
+// Placeholder Pages (for routes not yet built)
 const PlaceholderPage = ({ title }: { title: string }) => (
   <div className="min-h-[60vh] flex items-center justify-center pt-24 bg-sand-50">
     <div className="text-center">
@@ -32,16 +35,25 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Auth Routes (Standalone without global Navbar/Footer) */}
+        {/* Auth Routes (Standalone — no Navbar/Footer) */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* Main Routes */}
+        {/* Main Routes (with Navbar + Footer) */}
         <Route element={<MainLayout />}>
+          {/* Phase 1 */}
           <Route path="/" element={<Home />} />
-          <Route path="/resorts" element={<PlaceholderPage title="Our Resorts" />} />
+
+          {/* Phase 2 — Search & Discovery */}
+          <Route path="/resorts" element={<Resorts />} />
+          <Route path="/resorts/compare" element={<ResortCompare />} />
+          <Route path="/resorts/:slug" element={<ResortDetail />} />
+
+          {/* Placeholder routes (future phases) */}
           <Route path="/experiences" element={<PlaceholderPage title="Experiences" />} />
           <Route path="/about" element={<PlaceholderPage title="Our Story" />} />
+
+          {/* 404 */}
           <Route path="*" element={<PlaceholderPage title="Page Not Found" />} />
         </Route>
       </Routes>
@@ -50,3 +62,4 @@ function App() {
 }
 
 export default App;
+

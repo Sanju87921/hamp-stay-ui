@@ -4,33 +4,62 @@ import { Quote, Star } from "lucide-react";
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Jenkins",
-    role: "Travel Blogger",
-    content: "The perfect blend of luxury and nature. Waking up to the view of the Tungabhadra river from our eco-villa was surreal. HampiStays curated an unforgettable experience.",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop",
+    name: "Priya Raghavan",
+    role: "Travel Blogger · Mumbai",
+    content:
+      "Waking up in an eco-cottage built between Hampi's ancient boulders, with the Tungabhadra murmuring outside — it felt like time travel. The guided temple walk at sunrise was worth every rupee. Truly India's hidden gem.",
+    // Indian woman portrait
+    avatar: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=150&auto=format&fit=crop&facepad=3",
     rating: 5,
+    stay: "Evolve Back Kamalapura Palace",
   },
   {
     id: 2,
-    name: "David Chen",
-    role: "Photography Enthusiast",
-    content: "An architectural marvel that respects its surroundings. The guided temple trails they organized were exceptional. Highly recommend their premium suites.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop",
+    name: "Arjun Mehta",
+    role: "Architecture Photographer · Bengaluru",
+    content:
+      "As an architecture photographer, I've shot heritage sites across India. But Hampi is something else entirely. HampiStays organized a private access session at Vittala Temple before tourist hours — absolutely impossible to get otherwise.",
+    // Indian man portrait
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop&facepad=3",
     rating: 5,
+    stay: "Hampi Boutique Villa",
+  },
+  {
+    id: 3,
+    name: "Sophie & Mark Laurent",
+    role: "Honeymooners · Lyon, France",
+    content:
+      "We chose HampiStays for our honeymoon after reading about the coracle rides and boulder landscapes. The reality exceeded every expectation. The Boulders Resort cottage felt like our own private world.",
+    // International couple style portrait
+    avatar: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=150&auto=format&fit=crop&facepad=3",
+    rating: 5,
+    stay: "Hampi's Boulders Resort & Spa",
+  },
+  {
+    id: 4,
+    name: "Kavitha Nair",
+    role: "Yoga Retreat Organiser · Kochi",
+    content:
+      "I've brought 3 different retreat groups to HampiStays. Every time, the team customizes the experience — private yoga on Hemakuta Hill, community cooking with local families, silent meditation in the ruins. Unmatched.",
+    // South Indian woman portrait
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=150&auto=format&fit=crop&facepad=3",
+    rating: 5,
+    stay: "Heritage Resort Hampi",
   },
 ];
 
 export function Testimonials() {
   return (
     <section className="py-32 bg-forest-950 text-white relative overflow-hidden">
-      {/* Decorative background element */}
+      {/* Decorative background */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-forest-900 rounded-full blur-[150px] opacity-40 -translate-y-1/2 translate-x-1/3 pointer-events-none animate-float-slow" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-terracotta-900/20 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/3 pointer-events-none" />
-      
+
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-20 items-center">
-          <div className="lg:w-1/3">
-            <motion.span 
+        <div className="flex flex-col lg:flex-row gap-20 items-start">
+          {/* Left heading */}
+          <div className="lg:w-1/3 lg:sticky lg:top-32">
+            <motion.span
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -38,7 +67,7 @@ export function Testimonials() {
             >
               Guest Stories
             </motion.span>
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -47,61 +76,80 @@ export function Testimonials() {
             >
               Echoes of Delight
             </motion.h2>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
               className="text-forest-200 text-lg mb-10 leading-relaxed"
             >
-              Read what our esteemed guests have to say about their luxurious escapades in the heart of the Vijayanagara empire.
+              From honeymooners to heritage photographers — here is what real guests say about their time in the heart of the Vijayanagara empire.
             </motion.p>
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+
+            {/* Platform rating badges */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="flex gap-3"
+              className="space-y-3"
             >
-              {/* Decorative dots */}
-              <div className="w-16 h-1 bg-terracotta-500 rounded-full" />
-              <div className="w-3 h-1 bg-forest-700 rounded-full" />
-              <div className="w-3 h-1 bg-forest-700 rounded-full" />
+              {[
+                { platform: "Google Reviews", rating: "4.9", count: "2,100+" },
+                { platform: "TripAdvisor", rating: "5.0", count: "870+" },
+                { platform: "Booking.com", rating: "9.4/10", count: "540+" },
+              ].map((item) => (
+                <div key={item.platform} className="flex items-center justify-between bg-forest-900/60 rounded-xl px-4 py-3 border border-forest-800/50">
+                  <span className="text-sm text-forest-300 font-medium">{item.platform}</span>
+                  <div className="flex items-center gap-2">
+                    <Star className="w-3.5 h-3.5 fill-terracotta-400 text-terracotta-400" />
+                    <span className="text-white font-bold text-sm">{item.rating}</span>
+                    <span className="text-forest-500 text-xs">({item.count})</span>
+                  </div>
+                </div>
+              ))}
             </motion.div>
           </div>
 
-          <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          {/* Right: reviews grid */}
+          <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.id}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="glass-dark p-10 rounded-[2rem] relative group hover:-translate-y-2 transition-transform duration-500"
+                transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="glass-dark p-8 rounded-[2rem] relative group hover:-translate-y-2 transition-transform duration-500 flex flex-col"
               >
-                <Quote className="w-12 h-12 text-terracotta-500/20 absolute top-8 right-8 transition-transform duration-500 group-hover:scale-110 group-hover:text-terracotta-500/30" />
-                
-                <div className="flex gap-1 mb-6">
+                <Quote className="w-10 h-10 text-terracotta-500/20 absolute top-7 right-7 transition-transform duration-500 group-hover:scale-110 group-hover:text-terracotta-500/30" />
+
+                <div className="flex gap-1 mb-5">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 text-terracotta-400 fill-terracotta-400" />
                   ))}
                 </div>
 
-                <p className="text-sand-100/90 text-lg leading-relaxed mb-10 relative z-10 font-medium">
+                <p className="text-sand-100/90 text-base leading-relaxed mb-6 relative z-10 flex-1">
                   "{testimonial.content}"
                 </p>
-                
-                <div className="flex items-center gap-5 pt-6 border-t border-white/10">
+
+                {/* Stayed at */}
+                <div className="mb-5">
+                  <span className="text-[10px] font-bold text-forest-400 uppercase tracking-widest">Stayed at</span>
+                  <p className="text-terracotta-400 text-xs font-semibold mt-0.5">{testimonial.stay}</p>
+                </div>
+
+                <div className="flex items-center gap-4 pt-5 border-t border-white/10">
                   <img
                     src={testimonial.avatar}
                     alt={testimonial.name}
                     loading="lazy"
-                    className="w-14 h-14 rounded-full object-cover border-2 border-forest-700/50 p-0.5"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-terracotta-600/40"
                   />
                   <div>
-                    <h4 className="font-bold text-white tracking-wide">{testimonial.name}</h4>
-                    <p className="text-forest-300 text-sm font-medium">{testimonial.role}</p>
+                    <h4 className="font-bold text-white tracking-wide text-sm">{testimonial.name}</h4>
+                    <p className="text-forest-300 text-xs font-medium mt-0.5">{testimonial.role}</p>
                   </div>
                 </div>
               </motion.div>

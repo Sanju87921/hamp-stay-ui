@@ -1,44 +1,53 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Star, MapPin, Heart } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "./ui/Button";
 import { cn } from "../utils/cn";
+
 
 const resorts = [
   {
     id: 1,
+    slug: "evolve-back-kamalapura",
     name: "Evolve Back Kamalapura Palace",
     location: "Kamalapura, Hampi",
-    price: "$350",
+    price: "₹31,000",
     rating: 4.9,
-    reviews: 124,
-    image: "https://images.unsplash.com/photo-1542314831-c6a4d14d8c53?q=80&w=2070&auto=format&fit=crop",
-    amenities: ["Private Pool", "Spa", "Fine Dining"],
+    reviews: 248,
+    // Aerial view of Hampi — Tungabhadra river with ancient city
+    image: "https://images.unsplash.com/photo-1636903684031-e187417f3e77?auto=format&fit=crop&q=80&w=2000",
+    amenities: ["Private Pool", "Spa", "Butler Service"],
     isPopular: true,
   },
   {
     id: 2,
-    name: "Heritage Resort Hampi",
-    location: "Hospet Road, Hampi",
-    price: "$220",
-    rating: 4.7,
-    reviews: 89,
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop",
-    amenities: ["Eco-friendly", "Guided Tours", "Organic Food"],
-    isPopular: false,
+    slug: "hampis-boulders-resort",
+    name: "Hampi's Boulders Resort & Spa",
+    location: "Nimbapura, Tungabhadra River",
+    price: "₹9,500",
+    rating: 4.8,
+    reviews: 312,
+    // Tungabhadra river bank with boulders — authentic Hampi scene
+    image: "https://images.unsplash.com/photo-1581488613801-68d36242d412?auto=format&fit=crop&q=80&w=2000",
+    amenities: ["River View", "Eco-Cottages", "Ayurvedic Spa"],
+    isPopular: true,
   },
   {
     id: 3,
-    name: "Boulders Resort & Spa",
-    location: "Tungabhadra River, Hampi",
-    price: "$280",
-    rating: 4.8,
-    reviews: 210,
-    image: "https://images.unsplash.com/photo-1587061949409-02df41d5e562?q=80&w=2070&auto=format&fit=crop",
-    amenities: ["River View", "Wellness Center", "Yoga"],
-    isPopular: true,
+    slug: "heritage-resort-hampi",
+    name: "Heritage Resort Hampi",
+    location: "Kamalapura Road, Hampi",
+    price: "₹7,500",
+    rating: 4.6,
+    reviews: 189,
+    // Virupaksha Temple — iconic Hampi landmark
+    image: "https://images.unsplash.com/photo-1591536098930-d571deee309a?auto=format&fit=crop&q=80&w=2000",
+    amenities: ["Heritage Tours", "Organic Food", "Campfire"],
+    isPopular: false,
   },
 ];
+
 
 export function FeaturedResorts() {
   const [favorites, setFavorites] = useState<number[]>([]);
@@ -91,9 +100,11 @@ export function FeaturedResorts() {
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            <Button variant="outline" className="border-forest-700 text-forest-900 hover:bg-forest-900 hover:text-white transition-all duration-300">
-              View All Properties
-            </Button>
+            <Link to="/resorts">
+              <Button variant="outline" className="border-forest-700 text-forest-900 hover:bg-forest-900 hover:text-white transition-all duration-300">
+                View All Properties
+              </Button>
+            </Link>
           </motion.div>
         </div>
 
@@ -181,9 +192,11 @@ export function FeaturedResorts() {
                         <span className="text-sm font-medium text-stone-500">/night</span>
                       </div>
                     </div>
-                    <Button variant="ghost" className="text-forest-700 hover:text-white font-bold px-6 py-2 h-auto hover:bg-forest-900 transition-all duration-300 rounded-xl">
-                      Explore
-                    </Button>
+                    <Link to={`/resorts/${resort.slug}`}>
+                      <Button variant="ghost" className="text-forest-700 hover:text-white font-bold px-6 py-2 h-auto hover:bg-forest-900 transition-all duration-300 rounded-xl">
+                        Explore
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </motion.div>

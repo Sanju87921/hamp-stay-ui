@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 
 @theme {
   --color-forest-50: #eefdf4;
@@ -84,6 +85,32 @@
 
 .animate-float-slow {
   animation: float-slow 15s ease-in-out infinite;
+}
+
+/* Leaflet popup overrides */
+.hampi-popup .leaflet-popup-content-wrapper {
+  border-radius: 16px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 10px 40px -10px rgba(0,0,0,0.15);
+}
+.hampi-popup .leaflet-popup-content {
+  margin: 0;
+  width: 220px !important;
+  padding: 12px;
+}
+.hampi-popup .leaflet-popup-tip-container {
+  display: none;
+}
+
+/* Slide-in animations */
+@keyframes slide-in-from-top {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in.fade-in.slide-in-from-top-2 {
+  animation: slide-in-from-top 0.2s ease-out forwards;
 }
 
 
