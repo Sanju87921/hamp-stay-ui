@@ -35,37 +35,37 @@ export function ResortCompare() {
         {/* Back */}
         <Link
           to="/resorts"
-          className="inline-flex items-center gap-2 text-stone-600 hover:text-forest-800 font-semibold text-sm transition-colors group mb-8"
+          className="inline-flex items-center gap-2 text-navy-950/60 hover:text-navy-900 font-semibold text-sm transition-colors group mb-8"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Back to Resorts
         </Link>
 
-        <h1 className="text-4xl font-serif font-bold text-forest-950 mb-8">Compare Properties</h1>
+        <h1 className="text-4xl font-serif font-bold text-navy-950 mb-8">Compare Properties</h1>
 
-        <div className="bg-white rounded-3xl shadow-sm border border-stone-100 overflow-hidden">
+        <div className="bg-white rounded-3xl shadow-sm border border-sand-100 overflow-hidden">
           {/* Header Row */}
-          <div className="flex border-b border-stone-100">
-            <div className="w-44 flex-shrink-0 bg-sand-50 p-4 border-r border-stone-100" />
+          <div className="flex border-b border-sand-100">
+            <div className="w-44 flex-shrink-0 bg-sand-50 p-4 border-r border-sand-100" />
             {resorts.map((resort) => (
-              <div key={resort.id} className={`${colWidth} flex-1 p-5 border-r border-stone-100 last:border-r-0`}>
+              <div key={resort.id} className={`${colWidth} flex-1 p-5 border-r border-sand-100 last:border-r-0`}>
                 <img
                   src={resort.images[0]}
                   alt={resort.name}
                   className="w-full h-36 object-cover rounded-2xl mb-4"
                 />
                 <Link to={`/resorts/${resort.slug}`}>
-                  <h3 className="font-bold font-serif text-forest-950 text-lg leading-snug hover:text-terracotta-600 transition-colors">
+                  <h3 className="font-bold font-serif text-navy-950 text-lg leading-snug hover:text-gold-600 transition-colors">
                     {resort.name}
                   </h3>
                 </Link>
-                <div className="flex items-center gap-1.5 text-stone-500 mt-1 mb-3">
-                  <MapPin className="w-3.5 h-3.5 text-terracotta-500" />
+                <div className="flex items-center gap-1.5 text-navy-950/50 mt-1 mb-3">
+                  <MapPin className="w-3.5 h-3.5 text-gold-500" />
                   <span className="text-xs font-medium">{resort.location.area}</span>
                 </div>
                 <Link
                   to={`/resorts/${resort.slug}`}
-                  className="block text-center text-sm font-bold py-2.5 px-4 bg-terracotta-600 hover:bg-terracotta-700 text-white rounded-xl transition-colors"
+                  className="block text-center text-sm font-bold py-2.5 px-4 bg-gold-600 hover:bg-gold-700 text-white rounded-xl transition-colors"
                 >
                   View Resort
                 </Link>
@@ -79,9 +79,9 @@ export function ResortCompare() {
               label: "Rating",
               render: (r: typeof RESORTS[0]) => (
                 <div className="flex items-center gap-1.5">
-                  <Star className="w-4 h-4 fill-terracotta-500 text-terracotta-500" />
-                  <span className="font-bold text-stone-900">{r.rating}</span>
-                  <span className="text-stone-500 text-xs">({r.reviewCount})</span>
+                  <Star className="w-4 h-4 fill-gold-500 text-gold-500" />
+                  <span className="font-bold text-navy-950">{r.rating}</span>
+                  <span className="text-navy-950/50 text-xs">({r.reviewCount})</span>
                 </div>
               ),
             },
@@ -89,28 +89,28 @@ export function ResortCompare() {
               label: "Starting Price",
               render: (r: typeof RESORTS[0]) => (
                 <div>
-                  <span className="font-bold text-forest-950 text-lg">₹{r.pricePerNight.toLocaleString("en-IN")}</span>
-                  <span className="text-stone-500 text-xs">/night</span>
+                  <span className="font-bold text-navy-950 text-lg">₹{r.pricePerNight.toLocaleString("en-IN")}</span>
+                  <span className="text-navy-950/50 text-xs">/night</span>
                 </div>
               ),
             },
             {
               label: "Type",
               render: (r: typeof RESORTS[0]) => (
-                <span className="capitalize font-semibold text-stone-700">{r.type}</span>
+                <span className="capitalize font-semibold text-navy-900">{r.type}</span>
               ),
             },
             {
               label: "Check-in",
-              render: (r: typeof RESORTS[0]) => <span className="text-stone-700 font-medium">{r.policies.checkIn}</span>,
+              render: (r: typeof RESORTS[0]) => <span className="text-navy-900 font-medium">{r.policies.checkIn}</span>,
             },
             {
               label: "Check-out",
-              render: (r: typeof RESORTS[0]) => <span className="text-stone-700 font-medium">{r.policies.checkOut}</span>,
+              render: (r: typeof RESORTS[0]) => <span className="text-navy-900 font-medium">{r.policies.checkOut}</span>,
             },
             {
               label: "Min. Nights",
-              render: (r: typeof RESORTS[0]) => <span className="text-stone-700 font-medium">{r.policies.minNights}</span>,
+              render: (r: typeof RESORTS[0]) => <span className="text-navy-900 font-medium">{r.policies.minNights}</span>,
             },
             {
               label: "Pets",
@@ -127,21 +127,21 @@ export function ResortCompare() {
                 r.amenities.includes(amenity) ? (
                   <CheckCircle className="w-5 h-5 text-green-600" />
                 ) : (
-                  <XCircle className="w-5 h-5 text-stone-300" />
+                  <XCircle className="w-5 h-5 text-navy-800/30" />
                 ),
             })),
           ].map((row, i) => (
             <div
               key={row.label}
-              className={`flex border-b border-stone-100 last:border-b-0 ${i % 2 === 0 ? "bg-white" : "bg-sand-50/50"}`}
+              className={`flex border-b border-sand-100 last:border-b-0 ${i % 2 === 0 ? "bg-white" : "bg-sand-50/50"}`}
             >
-              <div className="w-44 flex-shrink-0 px-4 py-4 border-r border-stone-100 flex items-center">
-                <span className="text-xs font-bold text-stone-500 uppercase tracking-wider">{row.label}</span>
+              <div className="w-44 flex-shrink-0 px-4 py-4 border-r border-sand-100 flex items-center">
+                <span className="text-xs font-bold text-navy-950/50 uppercase tracking-wider">{row.label}</span>
               </div>
               {resorts.map((resort) => (
                 <div
                   key={resort.id}
-                  className={`${colWidth} flex-1 px-5 py-4 border-r border-stone-100 last:border-r-0 flex items-center`}
+                  className={`${colWidth} flex-1 px-5 py-4 border-r border-sand-100 last:border-r-0 flex items-center`}
                 >
                   {row.render(resort)}
                 </div>

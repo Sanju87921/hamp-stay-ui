@@ -74,18 +74,18 @@ export function RangeSlider({
   return (
     <div className={cn("w-full", className)}>
       <div className="flex justify-between items-center mb-3">
-        <span className="text-sm font-semibold text-stone-700">{formatLabel(value[0])}</span>
-        <span className="text-xs text-stone-400">to</span>
-        <span className="text-sm font-semibold text-stone-700">{formatLabel(value[1])}</span>
+        <span className="text-sm font-semibold text-navy-900">{formatLabel(value[0])}</span>
+        <span className="text-xs text-navy-800/40">to</span>
+        <span className="text-sm font-semibold text-navy-900">{formatLabel(value[1])}</span>
       </div>
 
       <div className="relative h-6 flex items-center" ref={trackRef}>
         {/* Track background */}
-        <div className="absolute w-full h-1.5 bg-stone-200 rounded-full" />
+        <div className="absolute w-full h-1.5 bg-sand-200 rounded-full" />
 
         {/* Active range */}
         <div
-          className="absolute h-1.5 bg-terracotta-500 rounded-full"
+          className="absolute h-1.5 bg-gold-500 rounded-full"
           style={{ left: `${minPercent}%`, width: `${maxPercent - minPercent}%` }}
         />
 
@@ -94,7 +94,7 @@ export function RangeSlider({
           type="button"
           aria-label="Minimum price"
           className={cn(
-            "absolute w-5 h-5 bg-white border-2 border-terracotta-500 rounded-full shadow-md cursor-grab transition-transform focus:outline-none focus:ring-2 focus:ring-terracotta-400 focus:ring-offset-2",
+            "absolute w-5 h-5 bg-white border-2 border-gold-500 rounded-full shadow-md cursor-grab transition-transform focus:outline-none focus:ring-2 focus:ring-gold-400 focus:ring-offset-2",
             dragging === "min" && "scale-125 cursor-grabbing"
           )}
           style={{ left: `${minPercent}%`, transform: "translateX(-50%)" }}
@@ -107,7 +107,7 @@ export function RangeSlider({
           type="button"
           aria-label="Maximum price"
           className={cn(
-            "absolute w-5 h-5 bg-white border-2 border-terracotta-500 rounded-full shadow-md cursor-grab transition-transform focus:outline-none focus:ring-2 focus:ring-terracotta-400 focus:ring-offset-2",
+            "absolute w-5 h-5 bg-white border-2 border-gold-500 rounded-full shadow-md cursor-grab transition-transform focus:outline-none focus:ring-2 focus:ring-gold-400 focus:ring-offset-2",
             dragging === "max" && "scale-125 cursor-grabbing"
           )}
           style={{ left: `${maxPercent}%`, transform: "translateX(-50%)" }}

@@ -3,15 +3,16 @@ import { Button } from "./ui/Button";
 
 export function CTASection() {
   return (
-    <section className="py-32 relative overflow-hidden">
-      <div 
+    <section className="py-32 md:py-48 relative overflow-hidden">
+      {/* Full-width Section Background Image */}
+      <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
-        style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2080&auto=format&fit=crop')",
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1636903684031-e187417f3e77?auto=format&fit=crop&q=80&w=2070')",
         }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/80 to-forest-950/40 mix-blend-multiply" />
-      </div>
+      />
+      {/* Dark overlay for the background */}
+      <div className="absolute inset-0 bg-navy-950/60" />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
         <motion.div
@@ -19,30 +20,33 @@ export function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-4xl mx-auto glass-dark p-12 md:p-16 rounded-[3rem] shadow-luxury"
+          className="max-w-4xl mx-auto rounded-[2rem] shadow-luxury overflow-hidden relative group p-12 md:p-20 bg-navy-950/40 backdrop-blur-md border border-white/10"
         >
-          <motion.span 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-terracotta-400 font-bold tracking-[0.2em] uppercase text-sm mb-6 block"
-          >
-            Your Journey Awaits
-          </motion.span>
-          <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-8 leading-tight">
-            Begin Your Royal Retreat
-          </h2>
-          <p className="text-xl text-sand-200/90 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Join our exclusive membership for early access to seasonal packages and bespoke experiences tailored perfectly for your desires.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Button size="lg" className="w-full sm:w-auto bg-terracotta-600 hover:bg-terracotta-700 text-white border-none shadow-luxury hover:shadow-luxury-hover hover:-translate-y-1 transition-all duration-300 rounded-full px-10 h-14 text-lg">
-              Explore Packages
-            </Button>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto border-white/20 text-white hover:bg-white/10 hover:border-white/40 transition-all duration-300 rounded-full px-10 h-14 text-lg">
-              Contact Concierge
-            </Button>
+          {/* Content */}
+          <div className="relative z-10">
+            <motion.span
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-gold-500 font-semibold tracking-[0.2em] uppercase text-sm mb-6 block"
+            >
+              Your Journey Awaits
+            </motion.span>
+            <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-8 leading-tight">
+              Begin Your Royal Retreat
+            </h2>
+            <p className="text-editorial-dark mb-12">
+              Join our exclusive membership for early access to seasonal packages and bespoke experiences tailored perfectly for your desires.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              <Button size="lg" className="w-full sm:w-auto bg-gold-500 hover:bg-gold-400 text-navy-950 border-none shadow-gold hover:-translate-y-1 transition-all duration-500 rounded-full px-10 h-14 text-lg font-bold">
+                Explore Packages
+              </Button>
+              <Button size="lg" variant="outline" className="w-full sm:w-auto border-white/20 text-white hover:bg-white/10 hover:border-gold-400/40 transition-all duration-500 rounded-full px-10 h-14 text-lg font-bold">
+                Contact Concierge
+              </Button>
+            </div>
           </div>
         </motion.div>
       </div>

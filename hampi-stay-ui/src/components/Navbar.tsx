@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, MapPin } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "./ui/Button";
 import { cn } from "../utils/cn";
 import { motion, AnimatePresence } from "framer-motion";
@@ -27,76 +27,77 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-[0.16,1,0.3,1]",
         isScrolled
-          ? "bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-sm py-4"
-          : "bg-gradient-to-b from-black/50 to-transparent py-6"
+          ? "bg-sand-50/90 backdrop-blur-2xl border-b border-sand-200/60 shadow-sm py-2"
+          : "bg-gradient-to-b from-navy-950/80 via-navy-950/30 to-transparent py-4 md:py-5"
       )}
     >
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-full bg-forest-700 flex items-center justify-center text-white shadow-luxury transition-transform duration-300 group-hover:scale-105">
-              <MapPin className="w-5 h-5" />
-            </div>
-            <span
+        <div className="flex items-center justify-between relative">
+          {/* Logo (Left) */}
+          <Link to="/" className="flex items-center group z-10">
+            <img 
+              src="/logo-full.png" 
+              alt="HampiStays" 
               className={cn(
-                "text-2xl font-serif font-bold tracking-tight transition-colors duration-300",
-                isScrolled ? "text-forest-950" : "text-white"
+                "h-14 md:h-16 w-auto object-contain transition-all duration-500",
+                !isScrolled && "brightness-0 invert opacity-90 hover:opacity-100"
               )}
-            >
-              HampiStays
-            </span>
+            />
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            <div className="flex items-center gap-8">
-              {navLinks.map((link) => {
-                const isActive = location.pathname === link.path;
-                return (
-                  <Link
-                    key={link.name}
-                    to={link.path}
+          {/* Desktop Nav (Center) */}
+          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={cn(
+                    "relative text-[13px] uppercase tracking-[0.15em] font-semibold transition-colors duration-300 group py-2",
+                    isScrolled ? "text-navy-900 hover:text-gold-600" : "text-white/90 hover:text-gold-400"
+                  )}
+                >
+                  {link.name}
+                  <span 
                     className={cn(
-                      "relative text-sm font-semibold tracking-wide transition-colors duration-300 group py-2",
-                      isScrolled ? "text-stone-700 hover:text-forest-800" : "text-white/90 hover:text-white"
+                      "absolute bottom-0 left-0 w-full h-[2px] rounded-full transform origin-left transition-transform duration-300 ease-out",
+                      isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
+                      isScrolled ? "bg-gold-500" : "bg-gold-400"
                     )}
-                  >
-                    {link.name}
-                    <span 
-                      className={cn(
-                        "absolute bottom-0 left-0 w-full h-[2px] rounded-full transform origin-left transition-transform duration-300 ease-out",
-                        isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
-                        isScrolled ? "bg-forest-700" : "bg-white"
-                      )}
-                    />
-                  </Link>
-                );
-              })}
-            </div>
-            <div className="flex items-center gap-6 border-l pl-8 border-white/20 transition-colors duration-300" style={{ borderColor: isScrolled ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)' }}>
-              <Link
-                to="/login"
-                className={cn(
-                  "text-sm font-semibold transition-colors duration-300 hover:opacity-70",
-                  isScrolled ? "text-stone-700" : "text-white"
-                )}
-              >
-                Log in
-              </Link>
+                  />
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Desktop Actions (Right) */}
+          <div className="hidden md:flex items-center gap-5 z-10">
+            <Link
+              to="/login"
+              className={cn(
+                "text-[13px] uppercase tracking-[0.1em] font-semibold transition-colors duration-300 hover:opacity-70",
+                isScrolled ? "text-navy-900" : "text-white"
+              )}
+            >
+              Log in
+            </Link>
+            <Link to="/register">
               <Button
-                variant={isScrolled ? "primary" : "secondary"}
+                variant="primary"
                 size="sm"
                 className={cn(
-                  "shadow-luxury transition-all duration-300 hover:-translate-y-0.5",
-                  !isScrolled && "bg-white text-forest-950 hover:bg-stone-50"
+                  "transition-all duration-500 hover:-translate-y-0.5 border-none uppercase tracking-widest text-[11px] font-bold",
+                  isScrolled 
+                    ? "bg-navy-950 text-white hover:bg-gold-500 hover:text-navy-950 shadow-luxury" 
+                    : "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-gold-500/90 hover:text-navy-950"
                 )}
               >
                 Book Now
               </Button>
-            </div>
+            </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -105,9 +106,9 @@ export function Navbar() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
-              <X className={cn("w-6 h-6", isScrolled ? "text-stone-900" : "text-white")} />
+              <X className={cn("w-6 h-6", isScrolled ? "text-navy-950" : "text-white")} />
             ) : (
-              <Menu className={cn("w-6 h-6", isScrolled ? "text-stone-900" : "text-white")} />
+              <Menu className={cn("w-6 h-6", isScrolled ? "text-navy-950" : "text-white")} />
             )}
           </button>
         </div>
@@ -120,14 +121,14 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl shadow-luxury border-t border-stone-100 flex flex-col md:hidden overflow-hidden"
+            className="absolute top-full left-0 right-0 bg-sand-50/95 backdrop-blur-2xl shadow-luxury border-t border-sand-200/50 flex flex-col md:hidden overflow-hidden"
           >
             <div className="py-6 px-6 flex flex-col gap-6">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className="text-stone-800 font-serif text-2xl font-semibold border-b border-stone-100 pb-4"
+                  className="text-navy-950 font-serif text-2xl font-bold border-b border-sand-200 pb-4 hover:text-gold-600 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
@@ -136,12 +137,14 @@ export function Navbar() {
               <div className="flex flex-col gap-4 mt-2">
                 <Link
                   to="/login"
-                  className="text-center font-semibold text-forest-700 py-3 rounded-xl border-2 border-forest-100"
+                  className="text-center font-semibold text-navy-950 py-3 rounded-xl border border-sand-200 hover:border-gold-400 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Log in
                 </Link>
-                <Button size="lg" className="w-full shadow-luxury">Book Now</Button>
+                <Link to="/register" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button size="lg" className="w-full border-none transition-colors">Book Now</Button>
+                </Link>
               </div>
             </div>
           </motion.div>

@@ -1,34 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <!-- Background circle in forest green -->
-  <circle cx="32" cy="32" r="32" fill="#072b1d"/>
-
-  <!-- Temple/Gopuram silhouette in terracotta -->
-  <!-- Base platform -->
-  <rect x="10" y="50" width="44" height="5" rx="1" fill="#d44c30"/>
-
-  <!-- Main entrance arch -->
-  <rect x="27" y="36" width="10" height="14" rx="1" fill="#072b1d"/>
-  <path d="M27 36 Q32 30 37 36" fill="#d44c30"/>
-
-  <!-- First tier -->
-  <rect x="18" y="34" width="28" height="6" rx="1" fill="#d44c30"/>
-
-  <!-- Second tier (narrower) -->
-  <rect x="22" y="26" width="20" height="8" rx="1" fill="#e6664a"/>
-
-  <!-- Third tier (even narrower) -->
-  <rect x="26" y="19" width="12" height="7" rx="1" fill="#d44c30"/>
-
-  <!-- Fourth tier -->
-  <rect x="28" y="13" width="8" height="6" rx="1" fill="#e6664a"/>
-
-  <!-- Kalasha (pinnacle) -->
-  <ellipse cx="32" cy="10" rx="3" ry="4" fill="#d44c30"/>
-  <circle cx="32" cy="7" r="1.5" fill="#f08b74"/>
-
-  <!-- Decorative dots on tiers -->
-  <circle cx="21" cy="37" r="1" fill="#f08b74"/>
-  <circle cx="43" cy="37" r="1" fill="#f08b74"/>
-  <circle cx="25" cy="29" r="1" fill="#f08b74"/>
-  <circle cx="39" cy="29" r="1" fill="#f08b74"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="128" fill="#0B1736"/>
+  
+  <!-- Outer Gold Ring -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#C8A96B" stroke-width="12"/>
+  
+  <!-- Sun/Arch Motif -->
+  <path d="M 120 256 A 136 136 0 0 1 392 256" fill="none" stroke="#C8A96B" stroke-width="8" opacity="0.8"/>
+  <circle cx="256" cy="200" r="40" fill="#C8A96B" opacity="0.9"/>
+  
+  <!-- Elegant "H" Monogram -->
+  <path d="M 170 160 L 170 360 M 150 160 L 190 160 M 150 360 L 190 360" stroke="#F6F1E8" stroke-width="32" stroke-linecap="square"/>
+  <path d="M 342 160 L 342 360 M 322 160 L 362 160 M 322 360 L 362 360" stroke="#F6F1E8" stroke-width="32" stroke-linecap="square"/>
+  
+  <!-- Crossbar -->
+  <path d="M 170 260 L 342 260" stroke="#F6F1E8" stroke-width="32"/>
+  
+  <!-- Bottom Lotus Motif (similar to the one in the logo) -->
+  <path d="M 256 390 Q 236 360 216 390 Q 256 420 256 410 Q 256 420 296 390 Q 276 360 256 390" fill="#C8A96B"/>
+  <path d="M 256 370 L 246 390 L 266 390 Z" fill="#C8A96B"/>
 </svg>

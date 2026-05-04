@@ -8,12 +8,7 @@ export function Hero() {
 
   const staggerContainer: Variants = {
     hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
+    show: { opacity: 1, transition: { staggerChildren: 0.2 } },
   };
 
   const textVariant: Variants = {
@@ -22,58 +17,113 @@ export function Hero() {
   };
 
   return (
-    <div className="relative h-[95vh] min-h-[650px] flex items-center justify-center overflow-hidden bg-forest-950">
-      {/* Background Parallax Image */}
-      <motion.div 
-        style={{ y, opacity }}
-        className="absolute inset-0 w-full h-[120%] -top-[10%]"
-      >
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ 
-            backgroundImage: "url('https://images.unsplash.com/photo-1582610116397-edb318620f90?q=80&w=2070&auto=format&fit=crop')",
-          }}
-        />
-        {/* Cinematic Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-forest-950/80 via-forest-950/20 to-forest-950/90 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-black/30" />
-      </motion.div>
+    <div className="relative min-h-[100svh] flex items-center justify-center bg-navy-950 z-30">
+      {/* Background Elements Container - clipped to prevent overflow */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Background Parallax Image */}
+        <motion.div
+          style={{ y, opacity }}
+          className="absolute inset-0 w-full h-[120%] -top-[10%] pointer-events-none"
+        >
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-[1.02] transform transition-transform duration-[20s] ease-out hover:scale-110"
+            style={{ 
+              backgroundImage: 'url("/chariot-bg.png")',
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-950/20 to-navy-950/85 pointer-events-none" />
+          <div className="absolute inset-0 bg-navy-950/30 pointer-events-none" />
+        </motion.div>
 
-      {/* Floating Ambient Orbs (CSS animated) */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-terracotta-500/20 rounded-full blur-[100px] animate-float pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-forest-400/20 rounded-full blur-[120px] animate-float-slow pointer-events-none" />
+        {/* Floating Ambient Orbs — warm gold tones */}
+        <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-gold-400/15 rounded-full blur-[80px] md:blur-[100px] animate-float pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 sm:w-96 sm:h-96 md:w-[500px] md:h-[500px] bg-sunset-500/10 rounded-full blur-[100px] md:blur-[120px] animate-float-slow pointer-events-none" />
+      </div>
 
-      <div className="relative z-10 container mx-auto px-4 md:px-6 flex flex-col items-center text-center mt-20">
+      <div className="relative z-10 w-full container mx-auto px-4 sm:px-6 flex flex-col items-center text-center pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="show"
-          className="max-w-5xl flex flex-col items-center"
+          className="max-w-5xl w-full flex flex-col items-center"
         >
-          <motion.span 
+          <motion.span
             variants={textVariant}
-            className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full glass text-white text-xs md:text-sm font-medium tracking-[0.2em] uppercase mb-8"
+            whileHover={{
+              y: -4,
+              scale: 1.04,
+              backgroundColor: "rgba(255,255,255,0.18)",
+              borderColor: "rgba(200,169,107,0.6)",
+              transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+            }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-medium tracking-[0.15em] sm:tracking-[0.2em] uppercase mb-6 sm:mb-8 cursor-default select-none"
           >
-            <span className="w-2 h-2 rounded-full bg-terracotta-400 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-gold-500 animate-pulse flex-shrink-0" />
             Welcome to Hampi
           </motion.span>
-          
-          <motion.h1 
+
+          <motion.h1
             variants={textVariant}
-            className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-[1.1] mb-6 text-shadow-lg"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-[1.1] mb-4 sm:mb-6 text-shadow-lg"
           >
-            Discover Ancient <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sand-200 to-terracotta-200 italic font-medium pr-2">
+            Discover Ancient{" "}
+            <br className="hidden sm:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 to-gold-500 italic font-medium pr-2">
               Luxury
             </span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             variants={textVariant}
-            className="text-lg md:text-2xl text-sand-50/90 font-medium max-w-2xl mx-auto mb-16 text-shadow-md leading-relaxed"
+            className="text-editorial-dark mb-8 sm:mb-10 px-2 text-shadow-md"
           >
-            Experience the grandeur of the Vijayanagara Empire seamlessly blended with world-class eco-hospitality.
+            Experience the grandeur of the Vijayanagara Empire seamlessly
+            blended with world-class eco-hospitality.
           </motion.p>
+
+          {/* Brand Tagline */}
+          <motion.div
+            variants={textVariant}
+            className="flex items-center justify-center gap-4 mb-12 sm:mb-16 md:mb-20"
+          >
+            {["Stay", "Experience", "Remember"].map((word, i) => (
+              <motion.span
+                key={word}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1.1,
+                  delay: 0.9 + i * 0.15,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="flex items-center gap-4"
+              >
+                <motion.span
+                  whileHover={{
+                    y: -3,
+                    scale: 1.08,
+                    color: "rgba(200, 169, 107, 1)",
+                    textShadow: "0 0 20px rgba(200, 169, 107, 0.5)",
+                    transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
+                  }}
+                  className="uppercase tracking-[0.35em] text-xs sm:text-sm font-semibold cursor-default select-none"
+                  style={{ color: "rgba(200, 169, 107, 0.85)" }}
+                >
+                  {word}
+                </motion.span>
+                {i < 2 && (
+                  <motion.span
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 1.0 + i * 0.15 }}
+                    className="w-1 h-1 rounded-full flex-shrink-0"
+                    style={{ background: "rgba(200, 169, 107, 0.5)" }}
+                  />
+                )}
+              </motion.span>
+            ))}
+          </motion.div>
         </motion.div>
 
         <motion.div
@@ -85,9 +135,9 @@ export function Hero() {
           <SearchBar />
         </motion.div>
       </div>
-      
-      {/* Bottom fade into next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-sand-50 to-transparent z-10" />
+
+      {/* Bottom fade — to warm sandstone */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 bg-gradient-to-t from-sand-50 to-transparent z-10 pointer-events-none" />
     </div>
   );
 }

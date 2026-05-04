@@ -85,31 +85,31 @@ export function ResortFilters({
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
-          <SlidersHorizontal className="w-5 h-5 text-forest-700" />
-          <h3 className="font-bold text-forest-950 text-lg font-serif">Filters</h3>
+          <SlidersHorizontal className="w-5 h-5 text-navy-800" />
+          <h3 className="font-bold text-navy-950 text-lg font-serif">Filters</h3>
         </div>
         <div className="flex items-center gap-3">
           {hasActiveFilters && (
             <button
               type="button"
               onClick={clearAll}
-              className="text-xs text-terracotta-600 font-bold hover:underline"
+              className="text-xs text-gold-600 font-bold hover:underline"
             >
               Clear all
             </button>
           )}
           {onClose && (
-            <button type="button" onClick={onClose} className="text-stone-500 hover:text-stone-800">
+            <button type="button" onClick={onClose} className="text-navy-950/50 hover:text-navy-950">
               <X className="w-5 h-5" />
             </button>
           )}
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto space-y-8 pr-1">
+      <div className="flex-1 overflow-y-auto space-y-8 pr-2 pb-8">
         {/* Price Range */}
         <section>
-          <h4 className="text-xs font-bold text-stone-500 uppercase tracking-widest mb-4">
+          <h4 className="text-xs font-bold text-navy-950/50 uppercase tracking-widest mb-4">
             Price Per Night
           </h4>
           <RangeSlider
@@ -127,7 +127,7 @@ export function ResortFilters({
 
         {/* Property Type */}
         <section>
-          <h4 className="text-xs font-bold text-stone-500 uppercase tracking-widest mb-4">
+          <h4 className="text-xs font-bold text-navy-950/50 uppercase tracking-widest mb-4">
             Property Type
           </h4>
           <div className="flex flex-wrap gap-2">
@@ -139,8 +139,8 @@ export function ResortFilters({
                 className={cn(
                   "px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-200",
                   filters.types.includes(value)
-                    ? "bg-forest-700 text-white border-forest-700"
-                    : "border-stone-200 text-stone-700 hover:border-forest-400"
+                    ? "bg-navy-800 text-white border-navy-800"
+                    : "border-sand-200 text-navy-900 hover:border-navy-500"
                 )}
               >
                 {label}
@@ -151,7 +151,7 @@ export function ResortFilters({
 
         {/* Rating */}
         <section>
-          <h4 className="text-xs font-bold text-stone-500 uppercase tracking-widest mb-4">
+          <h4 className="text-xs font-bold text-navy-950/50 uppercase tracking-widest mb-4">
             Minimum Rating
           </h4>
           <div className="flex flex-wrap gap-2">
@@ -163,8 +163,8 @@ export function ResortFilters({
                 className={cn(
                   "px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-200",
                   filters.minRating === value
-                    ? "bg-terracotta-600 text-white border-terracotta-600"
-                    : "border-stone-200 text-stone-700 hover:border-terracotta-400"
+                    ? "bg-gold-600 text-white border-gold-600"
+                    : "border-sand-200 text-navy-900 hover:border-gold-400"
                 )}
               >
                 {label}
@@ -175,7 +175,7 @@ export function ResortFilters({
 
         {/* Amenities */}
         <section>
-          <h4 className="text-xs font-bold text-stone-500 uppercase tracking-widest mb-4">
+          <h4 className="text-xs font-bold text-navy-950/50 uppercase tracking-widest mb-4">
             Amenities
           </h4>
           <div className="grid grid-cols-2 gap-2">
@@ -189,8 +189,8 @@ export function ResortFilters({
                   className={cn(
                     "px-3 py-2 rounded-xl text-sm font-medium border text-left transition-all duration-200",
                     active
-                      ? "bg-forest-50 text-forest-800 border-forest-300"
-                      : "border-stone-200 text-stone-600 hover:border-stone-400"
+                      ? "bg-navy-100 text-navy-900 border-navy-400"
+                      : "border-sand-200 text-navy-950/60 hover:border-gold-400"
                   )}
                 >
                   {a}
@@ -224,7 +224,7 @@ export function ResortFilters({
 
   // Desktop sidebar
   return (
-    <div className="bg-white rounded-3xl shadow-sm border border-stone-100 p-6 sticky top-28 max-h-[calc(100vh-8rem)] overflow-hidden flex flex-col">
+    <div className="bg-white rounded-3xl shadow-sm border border-sand-100 p-6 sticky top-28 max-h-[calc(100vh-8rem)] overflow-hidden flex flex-col">
       {content}
     </div>
   );

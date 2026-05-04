@@ -49,7 +49,7 @@ export function ResortCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-luxury transition-all duration-500 border border-stone-100 flex flex-col"
+      className="group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-luxury transition-all duration-500 border border-sand-100 flex flex-col"
     >
       {/* Image */}
       <Link to={`/resorts/${resort.slug}`} className="relative aspect-[4/3] overflow-hidden block">
@@ -65,7 +65,7 @@ export function ResortCard({
         {/* Badges */}
         <div className="absolute top-4 left-4 flex flex-col gap-2">
           {resort.isFeatured && (
-            <span className="bg-terracotta-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">
+            <span className="bg-gold-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">
               Featured
             </span>
           )}
@@ -81,53 +81,53 @@ export function ResortCard({
           onClick={(e) => { e.preventDefault(); setIsFav((p) => !p); }}
           className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center hover:bg-white/40 transition-colors shadow-sm"
         >
-          <Heart className={cn("w-5 h-5 transition-all duration-300", isFav ? "fill-terracotta-500 text-terracotta-500 scale-110" : "text-white")} />
+          <Heart className={cn("w-5 h-5 transition-all duration-300", isFav ? "fill-gold-500 text-gold-500 scale-110" : "text-white")} />
         </button>
 
         {/* Rating badge on hover */}
         <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow-lg translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-          <Star className="w-4 h-4 text-terracotta-500 fill-terracotta-500" />
-          <span className="text-sm font-bold text-stone-900">{resort.rating}</span>
-          <span className="text-xs text-stone-500 font-medium">({resort.reviewCount})</span>
+          <Star className="w-4 h-4 text-gold-500 fill-gold-500" />
+          <span className="text-sm font-bold text-navy-950">{resort.rating}</span>
+          <span className="text-xs text-navy-950/50 font-medium">({resort.reviewCount})</span>
         </div>
       </Link>
 
       {/* Content */}
       <div className="p-6 flex-grow flex flex-col justify-between">
         <div>
-          <div className="flex items-center gap-1.5 text-stone-500 mb-2">
-            <MapPin className="w-4 h-4 text-terracotta-500 flex-shrink-0" />
+          <div className="flex items-center gap-1.5 text-navy-950/50 mb-2">
+            <MapPin className="w-4 h-4 text-gold-500 flex-shrink-0" />
             <span className="text-sm font-medium tracking-wide">{resort.location.area}, Hampi</span>
           </div>
 
           <Link to={`/resorts/${resort.slug}`}>
-            <h3 className="text-xl font-bold font-serif text-forest-950 group-hover:text-terracotta-600 transition-colors duration-300 mb-4 leading-snug">
+            <h3 className="text-xl font-bold font-serif text-navy-950 group-hover:text-gold-600 transition-colors duration-300 mb-4 leading-snug">
               {resort.name}
             </h3>
           </Link>
 
           <div className="flex flex-wrap gap-2 mb-5">
             {resort.amenities.slice(0, 3).map((a) => (
-              <span key={a} className="px-3 py-1 bg-stone-50 text-stone-600 text-xs font-semibold rounded-lg border border-stone-100">
+              <span key={a} className="px-3 py-1 bg-sand-50 text-navy-950/60 text-xs font-semibold rounded-lg border border-sand-100">
                 {a}
               </span>
             ))}
             {resort.amenities.length > 3 && (
-              <span className="px-3 py-1 bg-stone-50 text-stone-500 text-xs font-semibold rounded-lg border border-stone-100">
+              <span className="px-3 py-1 bg-sand-50 text-navy-950/50 text-xs font-semibold rounded-lg border border-sand-100">
                 +{resort.amenities.length - 3} more
               </span>
             )}
           </div>
         </div>
 
-        <div className="flex items-end justify-between pt-5 border-t border-stone-100">
+        <div className="flex items-end justify-between pt-5 border-t border-sand-100">
           <div>
-            <span className="block text-[11px] text-stone-400 uppercase tracking-widest font-bold mb-0.5">From</span>
+            <span className="block text-[11px] text-navy-800/40 uppercase tracking-widest font-bold mb-0.5">From</span>
             <div className="flex items-baseline gap-1">
-              <span className="text-2xl font-serif font-bold text-forest-950">
+              <span className="text-2xl font-serif font-bold text-navy-950">
                 ₹{resort.pricePerNight.toLocaleString("en-IN")}
               </span>
-              <span className="text-sm font-medium text-stone-500">/night</span>
+              <span className="text-sm font-medium text-navy-950/50">/night</span>
             </div>
           </div>
 
@@ -142,8 +142,8 @@ export function ResortCard({
                 className={cn(
                   "text-xs font-bold px-3 py-2 rounded-xl border transition-all duration-200",
                   isInCompare
-                    ? "bg-forest-700 text-white border-forest-700"
-                    : "border-stone-300 text-stone-600 hover:border-forest-500 hover:text-forest-700 disabled:opacity-40 disabled:cursor-not-allowed"
+                    ? "bg-navy-800 text-white border-navy-800"
+                    : "border-sand-300 text-navy-950/60 hover:border-navy-600 hover:text-navy-800 disabled:opacity-40 disabled:cursor-not-allowed"
                 )}
               >
                 {isInCompare ? (
@@ -154,7 +154,7 @@ export function ResortCard({
 
             <Link
               to={`/resorts/${resort.slug}`}
-              className="text-sm font-bold text-forest-700 hover:text-white px-5 py-2 rounded-xl border border-forest-100 hover:bg-forest-900 hover:border-forest-900 transition-all duration-300"
+              className="text-sm font-bold text-navy-800 hover:text-white px-5 py-2 rounded-xl border border-navy-200 hover:bg-navy-900 hover:border-navy-900 transition-all duration-300"
             >
               Explore
             </Link>

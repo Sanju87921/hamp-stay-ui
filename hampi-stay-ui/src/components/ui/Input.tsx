@@ -19,7 +19,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           <input
             type={inputType}
             className={cn(
-              "peer w-full h-14 bg-white/50 backdrop-blur-sm border-2 border-white/40 rounded-xl px-4 pt-4 pb-1 text-stone-900 placeholder-transparent outline-none transition-all duration-300 focus:border-terracotta-500 focus:bg-white/80 shadow-sm hover:border-white/60",
+              "peer w-full h-14 bg-sand-50/80 backdrop-blur-sm border-2 border-sand-200 rounded-xl px-4 pt-4 pb-1 text-navy-950 placeholder-transparent outline-none transition-all duration-300 focus:border-gold-500 focus:bg-white shadow-sm hover:border-sand-300",
               error && "border-red-500 focus:border-red-500",
               isPassword && "pr-12",
               className
@@ -30,9 +30,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           />
           <label
             className={cn(
-              "absolute left-4 top-2 text-xs font-bold text-stone-500 uppercase tracking-widest transition-all duration-300 pointer-events-none",
+              "absolute left-4 top-2 text-xs font-bold text-navy-800/60 uppercase tracking-widest transition-all duration-300 pointer-events-none",
               "peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal",
-              "peer-focus:top-2 peer-focus:text-xs peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-terracotta-600",
+              "peer-focus:top-2 peer-focus:text-xs peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-gold-600",
               error && "text-red-500 peer-focus:text-red-500"
             )}
           >
@@ -43,7 +43,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-500 hover:text-stone-800 transition-colors focus:outline-none"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-navy-800/40 hover:text-navy-950 transition-colors focus:outline-none"
             >
               {showPassword ? (
                 <EyeOff className="w-5 h-5" />

@@ -7,13 +7,14 @@ import { Register } from "./pages/Register";
 import { Resorts } from "./pages/Resorts";
 import { ResortDetail } from "./pages/ResortDetail";
 import { ResortCompare } from "./pages/ResortCompare";
+import { ForgotPassword } from "./pages/ForgotPassword";
 
 // Placeholder Pages (for routes not yet built)
 const PlaceholderPage = ({ title }: { title: string }) => (
   <div className="min-h-[60vh] flex items-center justify-center pt-24 bg-sand-50">
     <div className="text-center">
-      <h1 className="text-4xl md:text-5xl font-serif text-forest-950 font-bold mb-4">{title}</h1>
-      <p className="text-stone-600">Coming soon.</p>
+      <h1 className="text-4xl md:text-5xl font-serif text-navy-950 font-bold mb-4">{title}</h1>
+      <p className="text-navy-950/60">Coming soon.</p>
     </div>
   </div>
 );
@@ -38,6 +39,7 @@ function App() {
         {/* Auth Routes (Standalone — no Navbar/Footer) */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
         {/* Main Routes (with Navbar + Footer) */}
         <Route element={<MainLayout />}>
