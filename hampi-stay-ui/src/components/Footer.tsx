@@ -19,9 +19,24 @@ export function Footer() {
               className="relative z-10 w-56 md:w-64 h-auto object-contain transition-transform duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.02] drop-shadow-2xl opacity-90 group-hover:opacity-100"
             />
           </Link>
-          <p className="text-sm leading-relaxed text-navy-800/80 max-w-sm md:text-right">
-            Experience the pinnacle of luxury eco-tourism in the heart of the ancient Vijayanagara empire.
-          </p>
+          <div className="max-w-md md:text-right">
+            <p className="text-sm leading-relaxed text-navy-800/80 mb-6">
+              Experience the pinnacle of luxury eco-tourism in the heart of the ancient Vijayanagara empire. Our mission is to preserve the heritage of Hampi while providing world-class hospitality and sustainable travel experiences.
+            </p>
+            <div className="flex flex-col md:items-end gap-3">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-600">Join the Exclusive Circle</span>
+              <div className="flex w-full max-w-xs gap-2">
+                <input 
+                  type="email" 
+                  placeholder="Email for rare updates" 
+                  className="flex-grow bg-white/50 border border-sand-200 rounded-full px-5 py-2.5 text-xs focus:outline-none focus:border-gold-500 transition-all placeholder:text-navy-800/30"
+                />
+                <button className="bg-navy-950 text-white px-6 py-2.5 rounded-full text-xs font-bold hover:bg-gold-500 hover:text-navy-950 transition-all shadow-sm">
+                  Join
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
@@ -61,9 +76,9 @@ export function Footer() {
           <div className="lg:col-span-2">
             <h4 className="text-navy-950 font-serif font-bold mb-6 uppercase tracking-wider text-base">Legal</h4>
             <ul className="space-y-4">
-              <li><a href="#" className="text-navy-900 font-semibold hover:text-gold-600 transition-colors text-base">Privacy Policy</a></li>
-              <li><a href="#" className="text-navy-900 font-semibold hover:text-gold-600 transition-colors text-base">Terms of Service</a></li>
-              <li><a href="#" className="text-navy-900 font-semibold hover:text-gold-600 transition-colors text-base">Cancellation Policy</a></li>
+              <li><Link to="/privacy" className="text-navy-900 font-semibold hover:text-gold-600 transition-colors text-base">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="text-navy-900 font-semibold hover:text-gold-600 transition-colors text-base">Terms of Service</Link></li>
+              <li><Link to="/contact" className="text-navy-900 font-semibold hover:text-gold-600 transition-colors text-base">Contact Us</Link></li>
               <li><a href="#" className="text-navy-900 font-semibold hover:text-gold-600 transition-colors text-base">Cookie Policy</a></li>
             </ul>
           </div>

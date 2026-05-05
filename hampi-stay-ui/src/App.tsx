@@ -8,6 +8,12 @@ import { Resorts } from "./pages/Resorts";
 import { ResortDetail } from "./pages/ResortDetail";
 import { ResortCompare } from "./pages/ResortCompare";
 import { ForgotPassword } from "./pages/ForgotPassword";
+import { Contact } from "./pages/Contact";
+import { TermsOfService } from "./pages/TermsOfService";
+import { PrivacyPolicy } from "./pages/PrivacyPolicy";
+import { Gallery } from "./pages/Gallery";
+import { OurStory } from "./pages/OurStory";
+import { ExperiencesPage } from "./pages/ExperiencesPage";
 
 // Placeholder Pages (for routes not yet built)
 const PlaceholderPage = ({ title }: { title: string }) => (
@@ -51,9 +57,13 @@ function App() {
           <Route path="/resorts/compare" element={<ResortCompare />} />
           <Route path="/resorts/:slug" element={<ResortDetail />} />
 
-          {/* Placeholder routes (future phases) */}
-          <Route path="/experiences" element={<PlaceholderPage title="Experiences" />} />
-          <Route path="/about" element={<PlaceholderPage title="Our Story" />} />
+          {/* Content Pages */}
+          <Route path="/experiences" element={<ExperiencesPage />} />
+          <Route path="/about" element={<OurStory />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
 
           {/* 404 */}
           <Route path="*" element={<PlaceholderPage title="Page Not Found" />} />

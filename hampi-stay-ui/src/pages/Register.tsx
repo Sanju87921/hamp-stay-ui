@@ -24,11 +24,6 @@ export function Register() {
     if (role) setStep(2);
   };
 
-  const staggerContainer: Variants = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.1 } },
-  };
-
   const itemVariant: Variants = {
     hidden: { opacity: 0, y: 20 },
     show: {
@@ -285,13 +280,13 @@ export function Register() {
                         />
                         <span className="text-sm font-medium text-navy-800/60 group-hover:text-navy-950 transition-colors leading-relaxed">
                           I agree to the{" "}
-                          <a href="#" className="font-bold underline text-gold-600">
+                          <Link to="/terms" className="font-bold underline text-gold-600">
                             Terms of Service
-                          </a>{" "}
+                          </Link>{" "}
                           and{" "}
-                          <a href="#" className="font-bold underline text-gold-600">
+                          <Link to="/privacy" className="font-bold underline text-gold-600">
                             Privacy Policy
-                          </a>
+                          </Link>
                         </span>
                       </label>
                     </div>
