@@ -336,3 +336,19 @@
 > ✅ **Phase 2 Complete.** Search & Discovery fully implemented — SearchBar, Date Picker, Guest Counter, Resort Listing, Filters, Sort, Map View (Leaflet), Resort Detail, Availability Check, Compare Tool, Nearby Attractions Guide.
 > 🔜 **Phase 3 Next.** Booking Flow & Payments.
 
+---
+
+## 🟣 PHASE 3A — Payment Provider Migration (Cashfree)
+> Goal: Migrate from Razorpay to Cashfree for one-time payments; keep refunds & payouts manual initially.
+
+- [ ] Add Cashfree env vars and sandbox keys (CASHFREE_APP_ID, CASHFREE_SECRET_KEY, CASHFREE_ENV, CASHFREE_WEBHOOK_SECRET)
+- [ ] Make payments provider-agnostic in DB (provider, providerOrderId, providerPaymentId, providerPayload)
+- [ ] Implement server endpoints: POST /payments/create-order, POST /payments/verify, POST /webhooks/cashfree (with signature verification and idempotency)
+- [ ] Add RefundRequest model and user/admin APIs; admin (super developer) reviews and records manual payouts (payoutReference)
+- [ ] Data migration to map legacy razorpayOrderId/paymentId into provider fields (run in staging first)
+- [ ] Integration tests in Cashfree sandbox and staging verification before production rollout
+
+Notes: This migration intentionally avoids changing existing public UI/routes outside of a hidden admin review page. Manual payouts are recorded in admin UI; automated payouts/split settlements are a future phase.
+
+---
+
