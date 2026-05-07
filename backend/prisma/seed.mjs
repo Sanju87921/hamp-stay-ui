@@ -4,17 +4,9 @@
  */
 
 import { PrismaClient } from "@prisma/client";
-import { PrismaPg } from "@prisma/adapter-pg";
 import { createHash } from "crypto";
 
-const connectionString = process.env.DATABASE_URL;
-if (!connectionString) {
-  console.error("❌ DATABASE_URL not set in environment");
-  process.exit(1);
-}
-
-const adapter = new PrismaPg({ connectionString });
-const db = new PrismaClient({ adapter });
+const db = new PrismaClient();
 
 function hashPassword(password) {
   return createHash("sha256").update(password).digest("hex");
