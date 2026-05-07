@@ -8,6 +8,7 @@ import { Testimonials } from "@/components/Testimonials";
 import { CTASection } from "@/components/CTASection";
 
 import { AboutSection } from "@/components/AboutSection";
+export const dynamic = "force-dynamic";
 
 export default function HomePage() {
   return (
