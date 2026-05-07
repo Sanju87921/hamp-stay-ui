@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import type { Resort, FilterState, SortOption, SearchParams } from "@/types/resort";
 import { sendNotificationAction } from "./notifications";
 import { revalidatePath } from "next/cache";
+import { auth } from "@/auth";
 
 export async function getResortsAction(options: {
   search?: Partial<SearchParams>;

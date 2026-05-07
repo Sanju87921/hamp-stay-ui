@@ -30,7 +30,7 @@ const AMENITY_OPTIONS = [
   "Pool", "Spa", "WiFi", "Restaurant", "Bar", "Gym", "Parking", "Room Service", "Airport Shuttle", "Pet Friendly"
 ];
 
-export function OnboardingWizard({ ownerId }: { ownerId: string }) {
+export function OnboardingWizard() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -108,7 +108,7 @@ export function OnboardingWizard({ ownerId }: { ownerId: string }) {
         : 0;
       const finalData = { ...formData, pricePerNight: minPrice };
       
-      const result = await createResortAction(finalData, ownerId);
+      const result = await createResortAction(finalData);
       if (result.success) {
         router.push("/dashboard");
       } else {

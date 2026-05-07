@@ -15,7 +15,7 @@ export default async function NewResortPage() {
         <h1 className="text-4xl font-serif font-bold text-navy-950 mb-2">Add Your Property</h1>
         <p className="text-navy-950/50">Follow the steps below to list your luxury stay in Hampi.</p>
       </div>
-      <OnboardingWizard ownerId={session.user.id} />
+      <OnboardingWizard />
     </div>
   );
 }
