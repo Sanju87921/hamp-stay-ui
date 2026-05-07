@@ -1,0 +1,353 @@
+// This is your Prisma schema file.
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// ─────────────────────────────────────────────────────────────
+// DATABASE CONNECTION
+// Only the DATABASE_URL in .env needs to change when switching
+// from local → Neon → Render. No code changes required.
+// ─────────────────────────────────────────────────────────────
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────────────────────
+// ENUMS
+// ─────────────────────────────────────────────────────────────
+
+enum Role {
+  TRAVELLER
+  RESORT_OWNER
+  SUPER_ADMIN
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  CAPTURED
+  FAILED
+  REFUNDED
+}
+
+enum RefundStatus {
+  PENDING
+  APPROVED
+  DECLINED
+  PROCESSED
+}
+
+// PayoutStatus tracks whether the platform has sent the owner their earnings
+enum PayoutStatus {
+  PENDING_MANUAL // Captured but not yet sent to owner
+  SENT           // Admin has manually sent the payout
+  FAILED         // Transfer failed; requires retry
+}
+
+enum ResortStatus {
+  DRAFT
+  ACTIVE
+  SUSPENDED
+}
+
+// ─────────────────────────────────────────────────────────────
+// MODELS
+// ─────────────────────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String
+  passwordHash  String? // Optional for OAuth users
+  role          Role      @default(TRAVELLER)
+  avatar        String? // Custom avatar
+  image         String? // NextAuth standard image field
+  emailVerified DateTime? // NextAuth standard field
+  phone         String?
+  isVerified    Boolean   @default(false)
+  badges        String[]  @default([])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Auth.js relations
+  accounts Account[]
+  sessions Session[]
+
+  // Application Relations
+  bookings      Booking[]      @relation("TravellerBookings")
+  resorts       Resort[]       @relation("OwnerResorts")
+  reviews       Review[]
+  notifications Notification[]
+  issues        Issue[]
+
+  // Refund relations
+  refundRequestsRequested RefundRequest[] @relation("RefundRequester")
+  refundRequestsProcessed RefundRequest[] @relation("RefundProcessor")
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model Resort {
+  id                String       @id @default(cuid())
+  name              String
+  slug              String       @unique
+  tagline           String?
+  description       String       @db.Text
+  type              String       @default("luxury") // luxury, boutique, eco, heritage, budget
+  location          Json // { area, district, state, lat, lng, distanceFromCenterKm }
+  pricePerNight     Float
+  images            String[] // Array of image URLs
+  amenities         String[] // e.g. ["Pool", "Spa", "WiFi"]
+  policies          Json? // { checkIn, checkOut, cancellation, petsAllowed, etc. }
+  nearbyAttractions Json? // Array of { name, type, distanceKm, description, imageUrl }
+  status            ResortStatus @default(DRAFT)
+  isFeatured        Boolean      @default(false)
+  isVerified        Boolean      @default(false)
+  rating            Float        @default(0)
+  reviewCount       Int          @default(0)
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  // Relations
+  ownerId      String
+  owner        User           @relation("OwnerResorts", fields: [ownerId], references: [id])
+  bookings     Booking[]
+  reviews      Review[]
+  availability Availability[]
+  roomTypes    RoomType[]
+  issues       Issue[]
+
+  @@map("resorts")
+}
+
+model RoomType {
+  id             String   @id @default(cuid())
+  name           String
+  description    String   @db.Text
+  pricePerNight  Float
+  capacity       Int
+  amenities      String[]
+  images         String[]
+  availableCount Int      @default(1)
+
+  resortId String
+  resort   Resort @relation(fields: [resortId], references: [id], onDelete: Cascade)
+
+  @@map("room_types")
+}
+
+model Booking {
+  id               String        @id @default(cuid())
+  checkIn          DateTime
+  checkOut         DateTime
+  guests           Int
+  nights           Int
+  pricePerNight    Float
+  subtotal         Float // pricePerNight * nights
+  commissionRate   Float // snapshot of rate at booking time
+  commissionAmount Float // subtotal * commissionRate / 100
+  ownerEarnings    Float // subtotal - commissionAmount
+  totalPrice       Float // what traveller pays = subtotal (commission is owner's cut)
+  status           BookingStatus @default(PENDING)
+  specialRequests  String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  // Relations
+  travellerId    String
+  traveller      User            @relation("TravellerBookings", fields: [travellerId], references: [id])
+  resortId       String
+  resort         Resort          @relation(fields: [resortId], references: [id])
+  payment        Payment?
+  review         Review?
+  issues         Issue[]
+  refundRequests RefundRequest[]
+
+  @@map("bookings")
+}
+
+model Payment {
+  id String @id @default(cuid())
+
+  // ── Cashfree provider fields ─────────────────────────────────
+  // provider is always "cashfree" going forward.
+  // These fields are intentionally generic so adding a new gateway
+  // in the future requires zero schema changes.
+  provider          String    @default("cashfree")
+  providerOrderId   String?   @unique // Cashfree cf_order_id
+  providerPaymentId String?   @unique // Cashfree cf_payment_id
+  providerStatus    String?            // Raw status string from Cashfree
+  providerPayload   Json?              // Full webhook payload for audit
+  providerCreatedAt DateTime?          // Cashfree order created_at
+
+  // ── Core payment fields ───────────────────────────────────────
+  amount    Float
+  currency  String        @default("INR")
+  status    PaymentStatus @default(PENDING)
+  paidAt    DateTime?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  // ── Manual payout tracking ────────────────────────────────────
+  // After capturing payment, the Super Admin manually sends the
+  // owner their share and records it here.
+  payoutStatus    PayoutStatus @default(PENDING_MANUAL)
+  payoutAmount    Float?       // = ownerEarnings at time of booking
+  payoutDate      DateTime?    // When admin sent the payout
+  payoutReference String?      // Bank transfer / UPI ref ID
+
+  // ── Relations ─────────────────────────────────────────────────
+  bookingId String  @unique
+  booking   Booking @relation(fields: [bookingId], references: [id])
+
+  @@map("payments")
+}
+
+model RefundRequest {
+  id              String       @id @default(cuid())
+  bookingId       String
+  booking         Booking      @relation(fields: [bookingId], references: [id])
+  amount          Float
+  requesterId     String
+  requester       User         @relation("RefundRequester", fields: [requesterId], references: [id])
+  reason          String?
+  status          RefundStatus @default(PENDING)
+  processedBy     String?
+  processedByUser User?        @relation("RefundProcessor", fields: [processedBy], references: [id])
+  payoutReference String?
+  notes           String?      @db.Text
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@map("refund_requests")
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int // 1-5
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  userId    String
+  user      User    @relation(fields: [userId], references: [id])
+  resortId  String
+  resort    Resort  @relation(fields: [resortId], references: [id])
+  bookingId String  @unique
+  booking   Booking @relation(fields: [bookingId], references: [id])
+
+  @@map("reviews")
+}
+
+model Availability {
+  id        String   @id @default(cuid())
+  date      DateTime @db.Date
+  isBlocked Boolean  @default(false)
+  reason    String? // e.g. "Owner blocked", "Maintenance"
+  createdAt DateTime @default(now())
+
+  // Relations
+  resortId String
+  resort   Resort @relation(fields: [resortId], references: [id])
+
+  @@unique([resortId, date])
+  @@map("availability")
+}
+
+enum NotificationType {
+  INFO
+  SUCCESS
+  WARNING
+  ERROR
+  BOOKING
+  PAYMENT
+  SYSTEM
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      NotificationType @default(INFO)
+  title     String
+  message   String           @db.Text
+  link      String? // e.g. "/dashboard/resorts/clx123"
+  isRead    Boolean          @default(false)
+  createdAt DateTime         @default(now())
+
+  @@map("notifications")
+}
+
+enum IssueStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+model Issue {
+  id          String      @id @default(cuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  resortId    String?
+  resort      Resort?     @relation(fields: [resortId], references: [id])
+  bookingId   String?
+  booking     Booking?    @relation(fields: [bookingId], references: [id])
+  title       String
+  description String      @db.Text
+  status      IssueStatus @default(OPEN)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@map("issues")
+}

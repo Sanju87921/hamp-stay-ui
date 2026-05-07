@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="128" fill="#0B1736"/>
+  
+  <!-- Outer Gold Ring -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#C8A96B" stroke-width="12"/>
+  
+  <!-- Sun/Arch Motif -->
+  <path d="M 120 256 A 136 136 0 0 1 392 256" fill="none" stroke="#C8A96B" stroke-width="8" opacity="0.8"/>
+  <circle cx="256" cy="200" r="40" fill="#C8A96B" opacity="0.9"/>
+  
+  <!-- Elegant "H" Monogram -->
+  <path d="M 170 160 L 170 360 M 150 160 L 190 160 M 150 360 L 190 360" stroke="#F6F1E8" stroke-width="32" stroke-linecap="square"/>
+  <path d="M 342 160 L 342 360 M 322 160 L 362 160 M 322 360 L 362 360" stroke="#F6F1E8" stroke-width="32" stroke-linecap="square"/>
+  
+  <!-- Crossbar -->
+  <path d="M 170 260 L 342 260" stroke="#F6F1E8" stroke-width="32"/>
+  
+  <!-- Bottom Lotus Motif (similar to the one in the logo) -->
+  <path d="M 256 390 Q 236 360 216 390 Q 256 420 256 410 Q 256 420 296 390 Q 276 360 256 390" fill="#C8A96B"/>
+  <path d="M 256 370 L 246 390 L 266 390 Z" fill="#C8A96B"/>
+</svg>

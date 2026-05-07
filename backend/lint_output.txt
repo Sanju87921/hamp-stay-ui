@@ -1,0 +1,137 @@
+
+> hampi-stays@0.1.0 lint
+> eslint
+
+
+/home/amar/Desktop/hmp/hampistays/backend/actions/auth.ts
+   8:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  51:39  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/amar/Desktop/hmp/hampistays/backend/actions/resorts.ts
+  15:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  51:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/amar/Desktop/hmp/hampistays/backend/app/(auth)/login/page.tsx
+  29:14  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/amar/Desktop/hmp/hampistays/backend/app/(auth)/register/page.tsx
+  61:14  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/amar/Desktop/hmp/hampistays/backend/app/about/AboutClient.tsx
+  140:44  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  142:52  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  182:15  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  222:17  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  222:40  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  233:47  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  234:36  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  235:50  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  389:19  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  430:52  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  431:21  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  431:30  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  431:47  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  431:70  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  456:15  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/amar/Desktop/hmp/hampistays/backend/app/admin-x7k/AdminAnalytics.tsx
+   10:3   warning  'ChevronRight' is defined but never used  @typescript-eslint/no-unused-vars
+   15:8   warning  'Link' is defined but never used          @typescript-eslint/no-unused-vars
+   19:10  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   20:9   error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  123:48  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  167:47  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  190:63  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/amar/Desktop/hmp/hampistays/backend/app/contact/ContactClient.tsx
+  116:15  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  126:24  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  210:51  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/home/amar/Desktop/hmp/hampistays/backend/app/dashboard/DashboardLayout.tsx
+  26:9  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/amar/Desktop/hmp/hampistays/backend/app/dashboard/OwnerView.tsx
+  8:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/amar/Desktop/hmp/hampistays/backend/app/dashboard/TravellerView.tsx
+   5:20  warning  'MapPin' is defined but never used                                                                                                                             @typescript-eslint/no-unused-vars
+   5:28  warning  'Clock' is defined but never used                                                                                                                              @typescript-eslint/no-unused-vars
+   7:49  error    Unexpected any. Specify a different type                                                                                                                       @typescript-eslint/no-explicit-any
+  36:11  error    Do not use an `<a>` element to navigate to `/resorts/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+
+/home/amar/Desktop/hmp/hampistays/backend/app/dashboard/earnings/page.tsx
+  4:22  warning  'DollarSign' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/amar/Desktop/hmp/hampistays/backend/app/dashboard/resorts/page.tsx
+  56:19  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/amar/Desktop/hmp/hampistays/backend/app/experiences/ExperiencesClient.tsx
+  270:17  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  373:18  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  374:56  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+
+/home/amar/Desktop/hmp/hampistays/backend/app/gallery/GalleryClient.tsx
+  231:17  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  314:15  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/amar/Desktop/hmp/hampistays/backend/app/layout.tsx
+  35:9  warning  Custom fonts not added in `pages/_document.js` will only load for a single page. This is discouraged. See: https://nextjs.org/docs/messages/no-page-custom-font  @next/next/no-page-custom-font
+
+/home/amar/Desktop/hmp/hampistays/backend/app/privacy/PrivacyClient.tsx
+  222:45  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  222:57  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  222:59  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  222:63  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  222:65  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  222:69  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  222:74  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  222:78  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  615:23  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  615:36  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/home/amar/Desktop/hmp/hampistays/backend/app/resorts/ResortsClient.tsx
+  5:37  warning  'X' is defined but never used       @typescript-eslint/no-unused-vars
+  6:10  warning  'motion' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/amar/Desktop/hmp/hampistays/backend/app/resorts/[slug]/ResortDetailClient.tsx
+  58:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  71:15  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/amar/Desktop/hmp/hampistays/backend/app/resorts/compare/CompareClient.tsx
+  49:17  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/amar/Desktop/hmp/hampistays/backend/app/terms/TermsClient.tsx
+  469:32  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  469:46  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/home/amar/Desktop/hmp/hampistays/backend/auth.config.ts
+  47:23  warning  'credentials' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/amar/Desktop/hmp/hampistays/backend/components/Navbar.tsx
+  14:17  warning  'session' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/amar/Desktop/hmp/hampistays/backend/components/resorts/BookingWidget.tsx
+  156:18  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/home/amar/Desktop/hmp/hampistays/backend/components/resorts/ResortCard.tsx
+  57:9  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/amar/Desktop/hmp/hampistays/backend/hooks/useResorts.ts
+  27:6  warning  React Hook useEffect has a missing dependency: 'search'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/home/amar/Desktop/hmp/hampistays/backend/prisma/seed.mjs
+   35:9  warning  'admin' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  107:9  warning  'resort2' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/amar/Desktop/hmp/hampistays/backend/prisma/seed.ts
+  49:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  53:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  54:62  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/amar/Desktop/hmp/hampistays/backend/types/next-auth.d.ts
+  1:8   warning  'NextAuth' is defined but never used  @typescript-eslint/no-unused-vars
+  2:10  warning  'JWT' is defined but never used       @typescript-eslint/no-unused-vars
+
+✖ 74 problems (46 errors, 28 warnings)
+
