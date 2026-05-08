@@ -9,7 +9,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import { updateProfileAction, changePasswordAction } from "@/actions/user";
 import { cn } from "@/utils/cn";
 import { VerificationClient } from "./VerificationClient";
-import { User as UserType, OwnerProfile } from "@prisma/client";
+import type { User as UserType } from "@prisma/client";
+
+// Local type definition to resolve persistent IDE sync issues
+interface OwnerProfile {
+  id: string;
+  userId: string;
+  status: "NOT_SUBMITTED" | "PENDING" | "VERIFIED" | "REJECTED";
+  adminNotes?: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 export function SettingsClient({ 
   user, 
@@ -102,18 +112,16 @@ export function SettingsClient({
           <Shield className="w-4 h-4" />
           Security
         </button>
-        {user.role === "RESORT_OWNER" && (
-          <button
-            onClick={() => setActiveTab("verification")}
-            className={cn(
-              "flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold uppercase tracking-widest transition-all",
-              activeTab === "verification" ? "bg-navy-950 text-white shadow-lg" : "text-navy-950/40 hover:bg-sand-100"
-            )}
-          >
-            <Shield className="w-4 h-4 text-gold-500" />
-            Verification
-          </button>
-        )}
+        <button
+          onClick={() => setActiveTab("verification")}
+          className={cn(
+            "flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold uppercase tracking-widest transition-all",
+            activeTab === "verification" ? "bg-navy-950 text-white shadow-lg" : "text-navy-950/40 hover:bg-sand-100"
+          )}
+        >
+          <Shield className="w-4 h-4 text-gold-500" />
+          Verification
+        </button>
       </div>
 
       <AnimatePresence mode="wait">
