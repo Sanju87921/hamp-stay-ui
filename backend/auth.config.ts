@@ -55,11 +55,12 @@ export const authConfig = {
       
       return token;
     },
-    async session({ session, token }) {
+    async session({ session, token }: any) {
       if (token && session.user) {
-        session.user.role = token.role as string;
-        session.user.id = token.id as string;
-        session.user.badges = (token.badges as string[]) || [];
+        session.user.role = token.role;
+        session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.badges = token.badges || [];
       }
       return session;
     },
