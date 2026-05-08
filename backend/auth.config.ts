@@ -5,6 +5,7 @@ export const authConfig = {
   pages: {
     signIn: "/login",
   },
+  secret: process.env.AUTH_SECRET,
   trustHost: true,
   debug: true,
   logger: {
@@ -61,6 +62,7 @@ export const authConfig = {
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      checks: ["state"],
     }),
   ],
 } satisfies NextAuthConfig;
