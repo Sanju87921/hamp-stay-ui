@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { User, Shield, Camera, Phone, Mail, Check, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -10,6 +11,7 @@ import { cn } from "@/utils/cn";
 import { User as UserType } from "@prisma/client";
 
 export function SettingsClient({ user }: { user: UserType }) {
+  const router = useRouter();
   const { update } = useSession();
   const [activeTab, setActiveTab] = useState<"profile" | "security">("profile");
   const [isLoading, setIsLoading] = useState(false);
@@ -38,6 +40,7 @@ export function SettingsClient({ user }: { user: UserType }) {
     if (result.success) {
       // Update client session to refresh sidebar
       await update({ name: profile.name });
+      router.refresh();
       setStatus({ type: 'success', message: 'Profile updated successfully' });
     } else {
       setStatus({ type: 'error', message: result.error || 'Failed to update profile' });
