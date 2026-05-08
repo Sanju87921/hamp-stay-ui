@@ -12,7 +12,7 @@ export default async function SettingsPage() {
   });
 
   return (
-    <DashboardLayout role={session.user.role} user={session.user}>
+    <DashboardLayout role={session.user.role} user={user as any}>
       <div className="pb-20">
         <header className="mb-10">
           <h1 className="text-4xl font-serif font-bold text-navy-950 mb-2">Account Control</h1>

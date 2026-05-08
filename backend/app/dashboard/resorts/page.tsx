@@ -11,12 +11,16 @@ export default async function MyResortsPage() {
     redirect("/dashboard");
   }
 
+  const user = await db.user.findUnique({
+    where: { id: session.user.id }
+  });
+
   const resorts = await db.resort.findMany({
     where: { ownerId: session.user.id },
   });
 
   return (
-    <DashboardLayout role="RESORT_OWNER" user={session.user}>
+    <DashboardLayout role="RESORT_OWNER" user={user as any}>
       <div className="max-w-5xl">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>

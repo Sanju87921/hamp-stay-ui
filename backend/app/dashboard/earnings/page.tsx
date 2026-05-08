@@ -5,16 +5,22 @@ import { getOwnerAnalyticsAction } from "@/actions/analytics";
 import { OwnerAnalytics } from "@/components/dashboard/OwnerAnalytics";
 import { Calendar } from "lucide-react";
 
+import { db } from "@/lib/db";
+
 export default async function EarningsPage() {
   const session = await auth();
   if (!session?.user || session.user.role !== "RESORT_OWNER") {
     redirect("/dashboard");
   }
 
+  const user = await db.user.findUnique({
+    where: { id: session.user.id }
+  });
+
   const analyticsData = await getOwnerAnalyticsAction();
 
   return (
-    <DashboardLayout role="RESORT_OWNER" user={session.user}>
+    <DashboardLayout role="RESORT_OWNER" user={user as any}>
       <div className="max-w-6xl pb-20">
         <header className="mb-10">
           <h1 className="text-4xl font-serif font-bold text-navy-950 mb-2">Financial Intelligence</h1>
