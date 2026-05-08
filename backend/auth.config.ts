@@ -45,11 +45,13 @@ export const authConfig = {
       if (user) {
         token.role = user.role;
         token.id = user.id;
+        token.name = user.name;
         token.badges = user.badges || [];
       }
       
       // Handle session updates (e.g., name change)
       if (trigger === "update" && session?.name) {
+        console.log("Updating session name to:", session.name);
         token.name = session.name;
       }
       
