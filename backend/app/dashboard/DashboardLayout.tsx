@@ -30,8 +30,10 @@ interface DashboardLayoutProps {
 }
 
 export function DashboardLayout({ children, role, user: initialUser }: DashboardLayoutProps) {
-  const { data: session } = useSession();
-  const user = session?.user || initialUser;
+  const { data: session, status } = useSession();
+  
+  // Use live session data if available, otherwise fall back to initial server prop
+  const user = (status === "authenticated" && session?.user) ? session.user : initialUser;
   
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const pathname = usePathname();

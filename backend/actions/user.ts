@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { auth } from "@/auth";
+import { auth, update } from "@/auth";
 import { revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
 
@@ -23,8 +23,14 @@ export async function updateProfileAction(data: {
       }
     });
 
+    await update({
+      user: {
+        name: updatedUser.name
+      }
+    });
+
+    revalidatePath("/dashboard", "layout");
     revalidatePath("/dashboard/settings");
-    revalidatePath("/dashboard");
     
     return { 
       success: true, 

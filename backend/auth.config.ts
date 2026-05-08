@@ -50,9 +50,10 @@ export const authConfig = {
       }
       
       // Handle session updates (e.g., name change)
-      if (trigger === "update" && session?.name) {
-        console.log("Updating session name to:", session.name);
-        token.name = session.name;
+      if (trigger === "update") {
+        if (session?.name) token.name = session.name;
+        if (session?.user?.name) token.name = session.user.name;
+        console.log("JWT Token updated name to:", token.name);
       }
       
       return token;
