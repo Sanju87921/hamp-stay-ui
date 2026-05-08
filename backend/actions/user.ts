@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { auth, update } from "@/auth";
+import { auth } from "@/auth";
 import { revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
 
@@ -20,12 +20,6 @@ export async function updateProfileAction(data: {
         name: data.name,
         phone: data.phone,
         avatar: data.avatar,
-      }
-    });
-
-    await update({
-      user: {
-        name: updatedUser.name
       }
     });
 
