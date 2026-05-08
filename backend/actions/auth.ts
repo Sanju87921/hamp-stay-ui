@@ -44,7 +44,7 @@ export async function register(formData: any) {
     return { success: true };
   } catch (error: any) {
     // If it's a redirect error, let Next.js handle it
-    if (error.message === "NEXT_REDIRECT") {
+    if (error.message?.includes("NEXT_REDIRECT")) {
       throw error;
     }
     console.error("Registration error on server:", error);
@@ -61,7 +61,7 @@ export async function login(formData: any) {
       password,
       redirectTo: "/dashboard",
     });
-  } catch (error) {
+  } catch (error: any) {
     if (error instanceof AuthError) {
       console.error("Auth error in login action:", error.type, error.message);
       switch (error.type) {
@@ -72,7 +72,7 @@ export async function login(formData: any) {
       }
     }
     // If it's a redirect error, let Next.js handle it
-    if (error instanceof Error && error.message === "NEXT_REDIRECT") {
+    if (error?.message?.includes("NEXT_REDIRECT")) {
       throw error;
     }
     console.error("Unexpected error in login action:", error);
