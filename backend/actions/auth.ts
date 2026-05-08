@@ -42,7 +42,11 @@ export async function register(formData: any) {
     });
 
     return { success: true };
-  } catch (error) {
+  } catch (error: any) {
+    // If it's a redirect error, let Next.js handle it
+    if (error.message === "NEXT_REDIRECT") {
+      throw error;
+    }
     console.error("Registration error on server:", error);
     return { error: "Something went wrong during registration." };
   }
@@ -67,7 +71,11 @@ export async function login(formData: any) {
           return { error: "Something went wrong." };
       }
     }
+    // If it's a redirect error, let Next.js handle it
+    if (error instanceof Error && error.message === "NEXT_REDIRECT") {
+      throw error;
+    }
     console.error("Unexpected error in login action:", error);
-    throw error;
+    return { error: "Something went wrong." };
   }
 }
