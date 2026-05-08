@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import { User, Shield, Camera, Phone, Mail, Check, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -141,7 +142,7 @@ export function SettingsClient({ user }: { user: UserType }) {
                       <input
                         type="text"
                         value={profile.name}
-                        onChange={(e) => setProfile(p => ({ ...p, name: e.target.value }))}
+                        onChange={(e) => setProfile((p: any) => ({ ...p, name: e.target.value }))}
                         className="w-full pl-12 pr-4 py-4 bg-sand-50 border border-sand-100 rounded-2xl text-navy-950 font-bold focus:ring-2 focus:ring-gold-500 outline-none transition-all"
                         placeholder="Your name"
                       />
@@ -154,7 +155,7 @@ export function SettingsClient({ user }: { user: UserType }) {
                       <input
                         type="tel"
                         value={profile.phone}
-                        onChange={(e) => setProfile(p => ({ ...p, phone: e.target.value }))}
+                        onChange={(e) => setProfile((p: any) => ({ ...p, phone: e.target.value }))}
                         className="w-full pl-12 pr-4 py-4 bg-sand-50 border border-sand-100 rounded-2xl text-navy-950 font-bold focus:ring-2 focus:ring-gold-500 outline-none transition-all"
                         placeholder="+91 00000 00000"
                       />
@@ -187,7 +188,7 @@ export function SettingsClient({ user }: { user: UserType }) {
                     <input
                       type="password"
                       value={passwords.current}
-                      onChange={(e) => setPasswords(p => ({ ...p, current: e.target.value }))}
+                      onChange={(e) => setPasswords((p: any) => ({ ...p, current: e.target.value }))}
                       className="w-full px-4 py-4 bg-sand-50 border border-sand-100 rounded-2xl text-navy-950 font-bold focus:ring-2 focus:ring-gold-500 outline-none transition-all"
                       placeholder="••••••••"
                     />
@@ -197,7 +198,7 @@ export function SettingsClient({ user }: { user: UserType }) {
                     <input
                       type="password"
                       value={passwords.new}
-                      onChange={(e) => setPasswords(p => ({ ...p, new: e.target.value }))}
+                      onChange={(e) => setPasswords((p: any) => ({ ...p, new: e.target.value }))}
                       className="w-full px-4 py-4 bg-sand-50 border border-sand-100 rounded-2xl text-navy-950 font-bold focus:ring-2 focus:ring-gold-500 outline-none transition-all"
                       placeholder="••••••••"
                     />
@@ -207,7 +208,7 @@ export function SettingsClient({ user }: { user: UserType }) {
                     <input
                       type="password"
                       value={passwords.confirm}
-                      onChange={(e) => setPasswords(p => ({ ...p, confirm: e.target.value }))}
+                      onChange={(e) => setPasswords((p: any) => ({ ...p, confirm: e.target.value }))}
                       className="w-full px-4 py-4 bg-sand-50 border border-sand-100 rounded-2xl text-navy-950 font-bold focus:ring-2 focus:ring-gold-500 outline-none transition-all"
                       placeholder="••••••••"
                     />
