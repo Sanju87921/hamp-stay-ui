@@ -41,12 +41,18 @@ export const authConfig = {
 
       return true;
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
       if (user) {
         token.role = user.role;
         token.id = user.id;
         token.badges = user.badges || [];
       }
+      
+      // Handle session updates (e.g., name change)
+      if (trigger === "update" && session?.name) {
+        token.name = session.name;
+      }
+      
       return token;
     },
     async session({ session, token }) {

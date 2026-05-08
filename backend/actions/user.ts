@@ -14,7 +14,7 @@ export async function updateProfileAction(data: {
   if (!session?.user) return { success: false, error: "Unauthorized" };
 
   try {
-    await db.user.update({
+    const updatedUser = await db.user.update({
       where: { id: session.user.id },
       data: {
         name: data.name,
@@ -24,7 +24,14 @@ export async function updateProfileAction(data: {
     });
 
     revalidatePath("/dashboard/settings");
-    return { success: true };
+    revalidatePath("/dashboard");
+    
+    return { 
+      success: true, 
+      user: {
+        name: updatedUser.name,
+      } 
+    };
   } catch (error) {
     console.error("Error updating profile:", error);
     return { success: false, error: "Failed to update profile" };
