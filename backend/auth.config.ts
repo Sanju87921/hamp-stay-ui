@@ -1,9 +1,22 @@
 import type { NextAuthConfig } from "next-auth";
-import Credentials from "next-auth/providers/credentials";
+import Google from "next-auth/providers/google";
 
 export const authConfig = {
   pages: {
     signIn: "/login",
+  },
+  trustHost: true,
+  debug: true,
+  logger: {
+    error(code, ...message) {
+      console.error(`[next-auth][error][${code}]`, ...message);
+    },
+    warn(code, ...message) {
+      console.warn(`[next-auth][warn][${code}]`, ...message);
+    },
+    debug(code, ...message) {
+      console.log(`[next-auth][debug][${code}]`, ...message);
+    },
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
@@ -45,11 +58,9 @@ export const authConfig = {
     },
   },
   providers: [
-    Credentials({
-      async authorize(credentials) {
-        // This will be handled in auth.ts with Prisma
-        return null;
-      },
+    Google({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
-  ], // Add providers with an empty array for now, will be populated in auth.ts
+  ],
 } satisfies NextAuthConfig;

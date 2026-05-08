@@ -12,14 +12,15 @@ export default async function DashboardPage() {
 
   const role = session.user.role;
 
-  if (role === "RESORT_OWNER") {
-    const { getOwnerResortsAction } = await import("@/actions/resorts");
-    const resorts = await getOwnerResortsAction(session.user.id);
-    return <OwnerView user={session.user} initialResorts={resorts} />;
+  // Role-based Gateway Redirection
+  if (role === "SUPER_ADMIN") {
+    redirect("/admin-x7k");
   }
 
-  // Default to Traveller view
-  const { getTravellerBookingsAction } = await import("@/actions/bookings");
-  const bookings = await getTravellerBookingsAction();
-  return <TravellerView user={session.user} initialBookings={bookings} />;
+  if (role === "RESORT_OWNER") {
+    redirect("/dashboard/resorts");
+  }
+
+  // Default: Travellers go straight to browsing resorts
+  redirect("/resorts");
 }

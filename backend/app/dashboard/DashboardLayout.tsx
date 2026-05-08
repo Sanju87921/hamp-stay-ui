@@ -33,13 +33,13 @@ export function DashboardLayout({ children, role, user }: DashboardLayoutProps) 
   const pathname = usePathname();
 
   const travellerLinks: SidebarLink[] = [
-    { label: "My Bookings", href: "/dashboard", icon: Calendar },
+    { label: "My Bookings", href: "/dashboard/bookings", icon: Calendar },
     { label: "Wishlist", href: "/dashboard/wishlist", icon: Heart },
     { label: "Settings", href: "/dashboard/settings", icon: Settings },
   ];
 
   const ownerLinks: SidebarLink[] = [
-    { label: "Overview", href: "/dashboard", icon: LayoutDashboard },
+    { label: "Overview", href: "/dashboard/overview", icon: LayoutDashboard },
     { label: "My Resorts", href: "/dashboard/resorts", icon: Hotel },
     { label: "Inventory", href: "/dashboard/inventory", icon: Calendar },
     { label: "Earnings", href: "/dashboard/earnings", icon: TrendingUp },

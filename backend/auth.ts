@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import bcrypt from "bcryptjs";
-import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { authConfig } from "./auth.config";
 import { db } from "@/lib/db";
@@ -10,24 +9,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
   adapter: PrismaAdapter(db),
   session: { strategy: "jwt" },
-  trustHost: true,
-  debug: true,
-  logger: {
-    error(code, ...message) {
-      console.error(`[next-auth][error][${code}]`, ...message);
-    },
-    warn(code, ...message) {
-      console.warn(`[next-auth][warn][${code}]`, ...message);
-    },
-    debug(code, ...message) {
-      console.log(`[next-auth][debug][${code}]`, ...message);
-    },
-  },
   providers: [
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
+    ...authConfig.providers,
     Credentials({
       async authorize(credentials) {
         const { email, password } = credentials;
