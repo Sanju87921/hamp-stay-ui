@@ -10,12 +10,26 @@ import { cn } from "@/utils/cn";
 
 import { login } from "@/actions/auth";
 import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const urlError = searchParams.get("error");
+    if (urlError === "OAuthAccountNotLinked") {
+      setError("This email is already associated with another login method.");
+    } else if (urlError === "CredentialsSignin") {
+      setError("Invalid email or password.");
+    } else if (urlError) {
+      setError("An error occurred during authentication. Please try again.");
+    }
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

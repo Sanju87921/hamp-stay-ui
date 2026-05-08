@@ -43,8 +43,8 @@ export async function register(formData: any) {
 
     return { success: true };
   } catch (error) {
-    console.error("Registration error:", error);
-    return { error: "Something went wrong" };
+    console.error("Registration error on server:", error);
+    return { error: "Something went wrong during registration." };
   }
 }
 
@@ -59,6 +59,7 @@ export async function login(formData: any) {
     });
   } catch (error) {
     if (error instanceof AuthError) {
+      console.error("Auth error in login action:", error.type, error.message);
       switch (error.type) {
         case "CredentialsSignin":
           return { error: "Invalid credentials." };
@@ -66,6 +67,7 @@ export async function login(formData: any) {
           return { error: "Something went wrong." };
       }
     }
+    console.error("Unexpected error in login action:", error);
     throw error;
   }
 }

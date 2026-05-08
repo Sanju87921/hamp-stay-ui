@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { register } from "@/actions/auth";
 import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { cn } from "@/utils/cn";
 
 type UserRole = "guest" | "owner" | null;
@@ -28,6 +30,14 @@ export default function RegisterPage() {
 
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const urlError = searchParams.get("error");
+    if (urlError) {
+      setError("An error occurred during authentication. Please try again.");
+    }
+  }, [searchParams]);
 
   const handleNext = () => {
     if (role) setStep(2);
