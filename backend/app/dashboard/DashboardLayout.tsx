@@ -13,7 +13,7 @@ import {
   Heart,
   TrendingUp
 } from "lucide-react";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { BadgeList } from "@/components/ui/UserBadge";
 
 interface SidebarLink {
@@ -29,7 +29,11 @@ interface DashboardLayoutProps {
   user: User;
 }
 
-export function DashboardLayout({ children, role, user }: DashboardLayoutProps) {
+export function DashboardLayout({ children, role, user: initialUser }: DashboardLayoutProps) {
+  const { data: session } = useSession();
+  const user = session?.user || initialUser;
+  
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const pathname = usePathname();
 
   const travellerLinks: SidebarLink[] = [
