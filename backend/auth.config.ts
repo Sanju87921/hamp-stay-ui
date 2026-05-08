@@ -41,7 +41,7 @@ export const authConfig = {
 
       return true;
     },
-    async jwt({ token, user, trigger, session }) {
+    async jwt({ token, user, trigger, session }: any) {
       if (user) {
         token.role = user.role;
         token.id = user.id;

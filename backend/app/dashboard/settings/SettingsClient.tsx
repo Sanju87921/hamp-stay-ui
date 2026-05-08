@@ -15,14 +15,14 @@ export function SettingsClient({ user }: { user: UserType }) {
   const [status, setStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
 
   // Profile Form State
-  const [profile, setProfile] = useState({
+  const [profile, setProfile] = useState<{name: string, phone: string, avatar: string}>({
     name: user.name || "",
     phone: user.phone || "",
     avatar: user.avatar || "",
   });
 
   // Password Form State
-  const [passwords, setPasswords] = useState({
+  const [passwords, setPasswords] = useState<{current: string, new: string, confirm: string}>({
     current: "",
     new: "",
     confirm: ""
