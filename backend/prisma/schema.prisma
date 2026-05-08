@@ -27,11 +27,29 @@ model User {
   notifications           Notification[]
   refundRequestsProcessed RefundRequest[] @relation("RefundProcessor")
   refundRequestsRequested RefundRequest[] @relation("RefundRequester")
+  ownerProfile            OwnerProfile?
   resorts                 Resort[]        @relation("OwnerResorts")
   reviews                 Review[]
   sessions                Session[]
 
   @@map("users")
+}
+
+model OwnerProfile {
+  id                String             @id @default(cuid())
+  userId            String             @unique
+  user              User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  panNumber         String?            // Encrypted
+  bankName          String?            // Encrypted
+  accountNumber     String?            // Encrypted
+  ifscCode          String?            // Encrypted
+  gstNumber         String?            // Encrypted
+  status            VerificationStatus @default(NOT_SUBMITTED)
+  adminNotes        String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+
+  @@map("owner_profiles")
 }
 
 model Account {
@@ -304,4 +322,11 @@ enum IssueStatus {
   IN_PROGRESS
   RESOLVED
   CLOSED
+}
+
+enum VerificationStatus {
+  NOT_SUBMITTED
+  PENDING
+  VERIFIED
+  REJECTED
 }

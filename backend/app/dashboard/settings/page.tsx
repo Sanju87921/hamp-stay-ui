@@ -11,6 +11,10 @@ export default async function SettingsPage() {
     where: { id: session.user.id }
   });
 
+  const ownerProfile = await db.ownerProfile.findUnique({
+    where: { userId: session.user.id }
+  });
+
   return (
     <DashboardLayout role={session.user.role} user={user as any}>
       <div className="pb-20">
@@ -19,7 +23,7 @@ export default async function SettingsPage() {
           <p className="text-navy-950/50">Manage your personal information and security preferences.</p>
         </header>
         
-        {user && <SettingsClient user={user} />}
+        {user && <SettingsClient user={user} ownerProfile={ownerProfile} />}
       </div>
     </DashboardLayout>
   );
